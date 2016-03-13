@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Congreso</title>
+</head>
+<body>
+	<header>
+		<img src ="congreso.jpg" />
+
+		<nav> 
+			<ul> 
+			<li>Principal</li><br/></li>
+			<li>Productos</li> 
+			<li>Servicios</li> 
+			<li>Sobre nosotros</li> 
+			</ul> 
+		</nav> 
+	</header>
+	<footer>
+	</footer>
+
+	
+
+	<section>
+		<table border="1" style="margin-bottom: 3%">
+			<caption>Precios del congreso</caption>
+			<thead>
+				<tr>
+					<th rowspan="2"> Situación</th>
+					<th colspan="2"> Precios</th>
+				</tr>
+				 <tr>
+		         	<th>Estudiantes</th>
+		         	<th>Profesionales</th>
+		      </tr>
+			</thead>
+		
+			<tbody>
+				<tr>
+					<th>Registro temprano</th>
+					<td>20€</td>
+					<td>30€</td>
+				</tr>
+				<tr>
+					<th>Registro tardío</th>
+					<td>35€</td>
+					<td>45€</td>
+				</tr>
+			</tbody>
+		</table>
+
+
+	</section>
+
+	<section>
+		<form>
+			<fieldset style="width: 15%">
+				<legend>Asistencia Congreso</legend>
+				<legend>Nombre:</legend>
+				<input type="text" name="nombre" value=""> 
+				<legend>Apellidos:</legend>
+				<input type="text" name="apellidos" value=""> 
+				<legend>email:</legend>
+				<input type="text" name="email" value=""> 
+				<legend>Teléfono:</legend>
+				<input type="number" name="telefono" value=""> 
+				<legend>Fecha de nacimiento:</legend>
+				<input type="date" name="fecha" value=""> 
+				<legend>Número de acompañantes:</legend>
+				<input type="number" name="acompañantes" min="0" max="4"value=""> 
+				<legend>Universidad de procedencia:</legend>
+				<datalist id="Universidades">
+					<option value="Universidad de Granada">
+					<option value="Universidad de Sevilla">
+					<option value="Universidad de Málaga">
+					<option value="Universidad de Huelva">
+					<option value="Universidad de Jaén">
+					<option value="Universidad de Almeria">
+					<option value="Universidad de Córdoba">
+					<option value="Universidad de Cádiz">
+				</datalist>
+				<input type="text" id = "idUniversidades" list="Universidades">	
+				<legend>¿Es tu primera asistencia?</legend>
+				<label for="radiobtn1">Si</label>
+					<input type="radio" id="radiobtn1" name="menu" value=""> 
+				<label for="radiobtn1">No</label>
+					<input type="radio" id="radiobtn2" name="menu" value="" checked> 
+				<legend>¿Cómo conociste el evento?</legend>
+				<datalist id="conocidos">
+					<option value="A través de internet">
+					<option value="Por un amigo">
+					<option value="En el periódico">
+					<option value="Otro">
+				</datalist>
+				<input type="text" id = "idConocido" list="conocidos">	
+
+				<legend>Observaciones:</legend>
+				<textarea id="textArea1" rows=10 cols=30 > </textarea> 
+				<legend></legend>
+				<input type="submit" value="Enviar"> </input>
+				<input type="reset" value="Borrar datos"> </input>
+			</fieldset>
+		</form>
+	</section>	
+	<section>
+		<h2>Lugar de realización del congreso:</h2>
+			<p>Bilbao, España</p>
+		<h2>Lista de organizadores</h2>
+			<ul>
+				<li>Antonio Rodriguez Garcia</li>
+				<li>Manuela Vargas Ortiz</li>
+				<li>Jose María Robledo Puertas</li>
+				<li>Sonia González Salinas</li>
+			</ul>
+	</section>	
+</body>
+</html>
