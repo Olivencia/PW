@@ -1,13 +1,29 @@
 extends layout
 
 block content
-    a#home-link(href='/')
+    //a#home-link(href='/')
         .home-bar.centering-text.bordering-black
             h1 DiscoShop
-    #login-data
+    //#login-data
         input(type='text', placeholder='Usuario')
         input(type='password', placeholder='Contraseña')
         button(type='submit') Acceder
+    #header
+        #nav-bar
+            #logo.submenu-nav-bar
+                a(href='') DiscoShop
+            #nav-bar-info
+                .submenu-nav-bar
+                    a(href='') Categorias
+                .submenu-nav-bar
+                    a(href='') Contact
+                .submenu-nav-bar
+                    a(href='') About
+            #search-box.submenu-nav-bar
+                form#search-box-form(method='get', action='http://www.google.com')
+                    input#search-box-input(type='text', placeholder='Encuentra tu producto')
+                    input(type='submit', value='search')
+
     aside.vertical-banner.bordering-black Publicidad
     #releases
         .release.bordering-black
@@ -70,7 +86,7 @@ block content
                 a.references(href='') Radio Silence, James Blake
           #featured.section.centering-text.bordering-black
             h3 Disco destacado de la semana
-            #featured_disc.bordering-black.discs.lasts-discs-form
+            #featured-disc.bordering-black.discs.lasts-discs-form
               img.square(src='/images/euphoria_filipe_paiva.jpg')
               .adjust-to-center-left
                 .center-data-disc Euphoria
