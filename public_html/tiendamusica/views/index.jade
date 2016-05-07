@@ -1,5 +1,175 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+    a#home-link(href='/')
+        .home-bar.centering-text.bordering-black
+            h1 DiscoShop
+    #login-data
+        input(type='text', placeholder='Usuario')
+        input(type='password', placeholder='Contraseña')
+        button(type='submit') Acceder
+    aside.vertical-banner.bordering-black Publicidad
+    #releases
+        .release.bordering-black
+            h4 Paul McCartney volverá a tocar en España después de 12 años
+            h5
+              | Después de 12 años sin actuar en España, Paul McCartney dará un concierto en Madrid. Será el jueves 2 de junio en el estadio Vicente Calderón.
+            a.centering-text(href='') Ver más
+            .center-bottom-alignment
+                button.adjust-to-left(type='button') 35 comentarios
+                .play-triangles
+        .release.bordering-black
+            h4 Paul McCartney volverá a tocar en España después de 12 años
+            h5
+              | Después de 12 años sin actuar en España, Paul McCartney dará un concierto en Madrid. Será el jueves 2 de junio en el estadio Vicente Calderón.
+            a.centering-text(href='') Ver más
+            .center-bottom-alignment
+                button.adjust-to-left(type='button') 35 comentarios
+                .play-triangles
+        .release.bordering-black
+            h4 Paul McCartney volverá a tocar en España después de 12 años
+            h5
+              | Después de 12 años sin actuar en España, Paul McCartney dará un concierto en Madrid. Será el jueves 2 de junio en el estadio Vicente Calderón.
+            a.centering-text(href='') Ver más
+            .center-bottom-alignment
+                button.adjust-to-left(type='button') 35 comentarios
+                .play-triangles
+    #content
+      #left-content
+        #sections.bordering-black
+          h2#bar-head.centering-text Secciones | Géneros: ROCK / POP / RAP | Más vendidos | Más comentados
+          #notices.section.centering-text.bordering-black
+            h3 Noticias  musicales
+            ul
+              li
+                a.references(href='') Un recuerdo para Bowie
+              li
+                a.references(href='') Can you hear me, major Tom?
+              li
+                a.references(href='') Beyoncé en concierto en Barcelona
+              li
+                a.references(href='') El barrio 'Tour 20'
+              li
+                a.references(href='') Lianne La Havas abrirá para Coldplay
+              li
+                a.references(href='') Nace 'Noches del Botánico'
+          #anticipated.section.centering-text.bordering-black
+            h3 Discos más esperados
+            ul
+              li
+                a.references(href='') Blackstar, David Bowie
+              li
+                a.references(href='') Swish, Kanye West
+              li
+                a.references(href='') This Is Acting. Sia
+              li
+                a.references(href='') Painting With, Animal Collective
+              li
+                a.references(href='') Hopelessness, Anohni
+              li
+                a.references(href='') Radio Silence, James Blake
+          #featured.section.centering-text.bordering-black
+            h3 Disco destacado de la semana
+            #featured_disc.bordering-black.discs.lasts-discs-form
+              img.square(src='/images/euphoria_filipe_paiva.jpg')
+              .adjust-to-center-left
+                .center-data-disc Euphoria
+                .center-data-disc Filipe Paiva
+                .play-triangles
+                a.center-bottom-alignment(href='') Ver
+          #sold.section.centering-text.bordering-black
+            h3 Más vendidos
+            ul
+              li
+                a.references(href='') Adele "25"
+              li
+                a.references(href='') Taylor Swift "1989" 
+              li
+                a.references(href='') Ed Sheeran "X"
+              li
+                a.references(href='') Sam Smit "In The Lonely Hour"
+              li
+                a.references(href='') Justin Bieber "Purpose"
+              li
+                a.references(href='') Soundtrack "50 Shades Of Grey"
+        #lasts-discs.bordering-black
+          h2.bar-head.centering-text Últimos discos por género
+          div
+            button.genre.centering-text.bordering-black(type='button')
+              | ROCK
+            button.genre.centering-text.bordering-black(type='button')
+              | POP
+            button.genre.centering-text.bordering-black(type='button')
+              | RAP
+            button.genre.centering-text.bordering-black(type='button')
+              | METAL
+            button.genre.centering-text.bordering-black(type='button')
+              | JAZZ
+          div
+            .bordering-black.discs.lasts-discs-form
+              img.square(src='/images/euphoria_filipe_paiva.jpg')
+              .adjust-to-center-left
+                .center-data-disc Euphoria
+                .center-data-disc Filipe Paiva
+                .play-triangles
+                a.center-bottom-alignment(href='') Ver
+            .bordering-black.discs.lasts-discs-form
+              img.square(src='/images/eremuko_dunen_atzetik_itoiz.jpg')
+              .adjust-to-center-left
+                .center-data-disc Eremuko Dunen Atzetik
+                .center-data-disc Itoiz
+                .play-triangles
+                a.center-bottom-alignment(href='') Ver
+            .bordering-black.discs.lasts-discs-form
+              img.square(src='/images/tributo_a_la_mancha_del_jardin.jpg')
+              .adjust-to-center-left
+                .center-data-disc Tributo a la Mancha del jardín
+                .center-data-disc Varios artistas
+                .play-triangles
+                a.center-bottom-alignment(href='') Ver
+      #right-content
+        button#cat-alone.centering-text.bordering-black(style='font-size: 30px')
+          | ROCK
+        .bordering-black.discs(style='margin-left: 3%')
+          img.square(src='/images/el_poeta_halley_lovel_of_lesbian.jpg')
+          .adjust-to-center-left
+            .center-data-disc El poeta Halley
+            .center-data-disc Lovel of Lesbian
+            .play-triangles
+            a.center-bottom-alignment(href='') Ver
+        .bordering-black.discs(style='margin-left: 3%')
+          img.square(src='/images/eremuko_dunen_atzetik_itoiz.jpg')
+          .adjust-to-center-left
+            .center-data-disc Eremuko Dunen Atzetik
+            .center-data-disc Itoiz
+            .play-triangles
+            a.center-bottom-alignment(href='') Ver
+        .bordering-black.discs(style='margin-left: 3%')
+          img.square(src='/images/blackfieldii_blackfield.jpg')
+          .adjust-to-center-left
+            .center-data-disc Blackfield II
+            .center-data-disc Blackfield
+            .play-triangles
+            a.center-bottom-alignment(href='') Ver
+        .bordering-black.discs(style='margin-left: 3%')
+          img.square(src='/images/tributo_a_la_mancha_del_jardin.jpg')
+          .adjust-to-center-left
+            .center-data-disc Tributo a la Mancha del jardín
+            .center-data-disc Varios artistas
+            .play-triangles
+            a.center-bottom-alignment(href='') Ver
+        .bordering-black.discs(style='margin-left: 3%')
+          img.square(src='/images/euphoria_filipe_paiva.jpg')
+          .adjust-to-center-left
+            .center-data-disc Euphoria
+            .center-data-disc Filipe Paiva
+            .play-triangles
+            a.center-bottom-alignment(href='') Ver
+        .bordering-black.discs(style='margin-left: 3%')
+          img.square(src='/images/funny_how_it_goes_svedberg.jpg')
+          .adjust-to-center-left
+            .center-data-disc Funny How it Goes
+            .center-data-disc Svedberg
+            .play-triangles
+            a.center-bottom-alignment(href='') Ver
+

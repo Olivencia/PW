@@ -1,7 +1,192 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+html {
+  display: table;
+  margin: auto;
 }
-a {
-  color: #00b7ff;
+body {
+  max-width: 1336px;
+  font-family: arial;
+  background-color: #e8eded;
+}
+h2 {
+  padding-top: 10px;
+}
+h2,
+h3,
+h4 {
+  color: #0066c0;
+}
+.bordering-black {
+/*border: 1px solid black;*/
+  box-shadow: 0 -1px 0 #e5e5e5, 0 4px 2px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.24) !important;
+  background-color: #fff;
+}
+#home-link {
+  text-decoration: none;
+}
+.home-bar {
+  width: 50%;
+  float: left;
+  margin-bottom: 2%;
+/*background-image: url("http://www.vectorizados.com/muestras/mini-fondo-oscuro-musical.jpg");
+    background-size: contain;*/
+}
+.home-bar > h1 {
+  font-family: 'Lobster';
+  font-size: 80px;
+  color: #0066c0;
+  margin: 0;
+}
+#login-data {
+  float: left;
+  margin-left: 5%;
+  margin-top: 0.5%;
+}
+.vertical-banner {
+  width: 10%;
+  height: 1000px;
+  float: right;
+  margin-top: 137px;
+}
+#releases {
+  width: 88%;
+  height: 220px;
+  clear: left;
+}
+.release {
+  text-align: center;
+  float: left;
+  width: 30%;
+  height: 200px;
+  position: relative;
+  margin-right: 1%;
+  margin-top: 1%;
+  margin-left: 1.8%;
+}
+.center-bottom-alignment {
+  position: absolute;
+  bottom: 12px;
+  left: 0;
+  right: 0;
+}
+.centering-text {
+  text-align: center;
+  display: block;
+}
+.adjust-to-left {
+  float: left;
+  margin-top: 1%;
+}
+.play-triangles {
+  width: 0;
+  height: 0;
+  border-top: 13px solid transparent;
+  border-left: 26px solid #00f;
+  border-bottom: 13px solid transparent;
+  bottom: 12px;
+  position: absolute;
+  right: 0;
+}
+#content {
+  width: 88%;
+  height: 1000px;
+  position: relative;
+}
+#left-content {
+  float: left;
+  width: 75%;
+  height: 850px;
+}
+#sections {
+  height: 570px;
+  margin-top: 40px;
+  padding-bottom: 65px;
+}
+.bar-head {
+  height: 30px;
+}
+.section {
+  float: left;
+  width: 45%;
+  margin-top: 2%;
+  margin-left: 3%;
+  height: 250px;
+}
+#featured {
+  clear: left;
+}
+#lasts-discs {
+  height: 276px;
+  margin-top: 45px;
+}
+.genre {
+  float: left;
+  width: 173px;
+  font-size: 30px;
+  margin-left: 0%;
+  margin-top: 1%;
+  background-color: #ccc;
+  color: #234893;
+}
+.genre:active {
+  background-color: #9b9b9b;
+}
+#cat-alone {
+  width: 265px;
+  margin-left: 8px;
+  background-color: #ccc;
+  color: #234893;
+}
+.discs {
+  float: left;
+  width: 265px;
+  height: 120px;
+}
+.lasts-discs-form {
+  margin-top: 4%;
+  margin-left: 2%;
+}
+.center-data-disc {
+  width: auto;
+  margin-top: 10%;
+  font-size: 14px;
+  color: #0066c0;
+  text-align: center;
+}
+.square {
+  width: 92px;
+  height: 92px;
+  float: left;
+  margin-top: 5%;
+  margin-left: 5%;
+}
+.adjust-to-center-left {
+  width: 54%;
+  float: left;
+  position: relative;
+  margin-top: 3.5%;
+  margin-left: 4%;
+  height: 100%;
+}
+#right-content {
+  float: right;
+  width: 24%;
+  height: 770px;
+  margin-top: 40px;
+}
+.section.centering-text.bordering-black > h2 {
+  margin-top: 0;
+}
+ul {
+  list-style-type: none;
+}
+li {
+  text-align: left;
+  margin-bottom: 10px;
+}
+.references {
+  text-align: left;
+  text-decoration: none;
+}
+#featured_disc {
+  margin-left: 67px;
 }
