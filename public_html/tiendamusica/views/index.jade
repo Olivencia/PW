@@ -1,15 +1,8 @@
 extends layout
 
 block content
-    //a#home-link(href='/')
-        .home-bar.centering-text.bordering-black
-            h1 DiscoShop
-    //#login-data
-        input(type='text', placeholder='Usuario')
-        input(type='password', placeholder='Contraseña')
-        button(type='submit') Acceder
-    #header.bordering-black
-        #nav-bar
+    header.box
+        nav
             #logo.submenu-nav-bar
                 a(href='') DiscoShop
             #nav-bar-info
@@ -20,182 +13,104 @@ block content
                 .submenu-nav-bar
                     a(href='') Últimos discos
 
-            //#search-box.submenu-nav-bar
-                div
-                    span#search-box-input.icon
-                        i.fa.fa-search
-                    input#search(type='search', placeholder='Search...')
-
-
             #search-box.submenu-nav-bar
                 form#search-box-form(method='get', action='http://www.google.com')
                     span.icon
                         i.fa.fa-search
                     input#search-box-input(type='text', placeholder='Encuentra un disco...')
-                    //input(type='submit', value='search')
 
-    aside.vertical-banner.bordering-black Publicidad
-    #releases
-        .release.bordering-black
+            .submenu-nav-bar
+                a(href='') Entrar
+            #cart.submenu-nav-bar
+                a(href='') 
+                    img(src='/images/cart.png')
+
+    aside.vertical-banner.box Publicidad
+    section#releases
+      each val in [1,2,3]
+        article.release.box
             h4 Paul McCartney volverá a tocar en España después de 12 años
             h5
               | Después de 12 años sin actuar en España, Paul McCartney dará un concierto en Madrid. Será el jueves 2 de junio en el estadio Vicente Calderón.
             a.centering-text(href='') Ver más
             .center-bottom-alignment
-                button.adjust-to-left(type='button') 35 comentarios
                 .play-triangles
-        .release.bordering-black
-            h4 Paul McCartney volverá a tocar en España después de 12 años
-            h5
-              | Después de 12 años sin actuar en España, Paul McCartney dará un concierto en Madrid. Será el jueves 2 de junio en el estadio Vicente Calderón.
-            a.centering-text(href='') Ver más
-            .center-bottom-alignment
-                button.adjust-to-left(type='button') 35 comentarios
-                .play-triangles
-        .release.bordering-black
-            h4 Paul McCartney volverá a tocar en España después de 12 años
-            h5
-              | Después de 12 años sin actuar en España, Paul McCartney dará un concierto en Madrid. Será el jueves 2 de junio en el estadio Vicente Calderón.
-            a.centering-text(href='') Ver más
-            .center-bottom-alignment
-                button.adjust-to-left(type='button') 35 comentarios
-                .play-triangles
-    #content
+    section#content
       #left-content
-        #sections.bordering-black
+        section#article-section.box
           h2#bar-head.centering-text Secciones | Géneros: ROCK / POP / RAP | Más vendidos | Más comentados
-          #notices.section.centering-text.bordering-black
+          article#notices.section.centering-text.box
             h3 Noticias  musicales
             ul
-              li
-                a.references(href='') Un recuerdo para Bowie
-              li
-                a.references(href='') Can you hear me, major Tom?
-              li
-                a.references(href='') Beyoncé en concierto en Barcelona
-              li
-                a.references(href='') El barrio 'Tour 20'
-              li
-                a.references(href='') Lianne La Havas abrirá para Coldplay
-              li
-                a.references(href='') Nace 'Noches del Botánico'
-          #anticipated.section.centering-text.bordering-black
+              each val in [1,2,3,4,5,6]
+                li
+                  a.references(href='') Un recuerdo para Bowie
+
+          article#anticipated.section.centering-text.box
             h3 Discos más esperados
             ul
-              li
-                a.references(href='') Blackstar, David Bowie
-              li
-                a.references(href='') Swish, Kanye West
-              li
-                a.references(href='') This Is Acting. Sia
-              li
-                a.references(href='') Painting With, Animal Collective
-              li
-                a.references(href='') Hopelessness, Anohni
-              li
-                a.references(href='') Radio Silence, James Blake
-          #featured.section.centering-text.bordering-black
+              each val in [1,2,3,4,5,6]
+                li
+                  a.references(href='') Un recuerdo para Bowie
+          article#featured.section.centering-text.box
             h3 Disco destacado de la semana
-            #featured-disc.bordering-black.discs.lasts-discs-form
+            #featured-disc.box.discs.lasts-discs-form
               img.square(src='/images/euphoria_filipe_paiva.jpg')
               .adjust-to-center-left
                 .center-data-disc Euphoria
                 .center-data-disc Filipe Paiva
                 .play-triangles
                 a.center-bottom-alignment(href='') Ver
-          #sold.section.centering-text.bordering-black
+          article#sold.section.centering-text.box
             h3 Más vendidos
             ul
-              li
-                a.references(href='') Adele "25"
-              li
-                a.references(href='') Taylor Swift "1989" 
-              li
-                a.references(href='') Ed Sheeran "X"
-              li
-                a.references(href='') Sam Smit "In The Lonely Hour"
-              li
-                a.references(href='') Justin Bieber "Purpose"
-              li
-                a.references(href='') Soundtrack "50 Shades Of Grey"
-        #lasts-discs.bordering-black
+              each val in [1,2,3,4,5,6]
+                li
+                  a.references(href='') Un recuerdo para Bowie
+        section#lasts-discs.box
           h2.bar-head.centering-text Últimos discos por género
           div
-            button.genre.centering-text.bordering-black(type='button')
-              | ROCK
-            button.genre.centering-text.bordering-black(type='button')
-              | POP
-            button.genre.centering-text.bordering-black(type='button')
-              | RAP
-            button.genre.centering-text.bordering-black(type='button')
-              | METAL
-            button.genre.centering-text.bordering-black(type='button')
-              | JAZZ
+            each value in [1,2,3,4,5]
+              .genre.centering-text.box
+                | ROCK
+
           div
-            .bordering-black.discs.lasts-discs-form
-              img.square(src='/images/euphoria_filipe_paiva.jpg')
-              .adjust-to-center-left
-                .center-data-disc Euphoria
-                .center-data-disc Filipe Paiva
-                .play-triangles
-                a.center-bottom-alignment(href='') Ver
-            .bordering-black.discs.lasts-discs-form
-              img.square(src='/images/eremuko_dunen_atzetik_itoiz.jpg')
-              .adjust-to-center-left
-                .center-data-disc Eremuko Dunen Atzetik
-                .center-data-disc Itoiz
-                .play-triangles
-                a.center-bottom-alignment(href='') Ver
-            .bordering-black.discs.lasts-discs-form
-              img.square(src='/images/tributo_a_la_mancha_del_jardin.jpg')
-              .adjust-to-center-left
-                .center-data-disc Tributo a la Mancha del jardín
-                .center-data-disc Varios artistas
-                .play-triangles
-                a.center-bottom-alignment(href='') Ver
+            each val in [1,2,3]
+              .box.discs.lasts-discs-form
+                img.square(src='/images/euphoria_filipe_paiva.jpg')
+                .adjust-to-center-left
+                  .center-data-disc Euphoria
+                  .center-data-disc Filipe Paiva
+                  .play-triangles
+                  a.center-bottom-alignment(href='') Ver
+            
       #right-content
-        button#cat-alone.centering-text.bordering-black(style='font-size: 30px')
+        button#cat-alone.centering-text.box(style='font-size: 30px')
           | ROCK
-        .bordering-black.discs(style='margin-left: 3%')
-          img.square(src='/images/el_poeta_halley_lovel_of_lesbian.jpg')
-          .adjust-to-center-left
-            .center-data-disc El poeta Halley
-            .center-data-disc Lovel of Lesbian
-            .play-triangles
-            a.center-bottom-alignment(href='') Ver
-        .bordering-black.discs(style='margin-left: 3%')
-          img.square(src='/images/eremuko_dunen_atzetik_itoiz.jpg')
-          .adjust-to-center-left
-            .center-data-disc Eremuko Dunen Atzetik
-            .center-data-disc Itoiz
-            .play-triangles
-            a.center-bottom-alignment(href='') Ver
-        .bordering-black.discs(style='margin-left: 3%')
-          img.square(src='/images/blackfieldii_blackfield.jpg')
-          .adjust-to-center-left
-            .center-data-disc Blackfield II
-            .center-data-disc Blackfield
-            .play-triangles
-            a.center-bottom-alignment(href='') Ver
-        .bordering-black.discs(style='margin-left: 3%')
-          img.square(src='/images/tributo_a_la_mancha_del_jardin.jpg')
-          .adjust-to-center-left
-            .center-data-disc Tributo a la Mancha del jardín
-            .center-data-disc Varios artistas
-            .play-triangles
-            a.center-bottom-alignment(href='') Ver
-        .bordering-black.discs(style='margin-left: 3%')
-          img.square(src='/images/euphoria_filipe_paiva.jpg')
-          .adjust-to-center-left
-            .center-data-disc Euphoria
-            .center-data-disc Filipe Paiva
-            .play-triangles
-            a.center-bottom-alignment(href='') Ver
-        .bordering-black.discs(style='margin-left: 3%')
-          img.square(src='/images/funny_how_it_goes_svedberg.jpg')
-          .adjust-to-center-left
-            .center-data-disc Funny How it Goes
-            .center-data-disc Svedberg
-            .play-triangles
-            a.center-bottom-alignment(href='') Ver
+        each value in [1,2,3,4,5]
+          .box.discs(style='margin-left: 3%')
+            img.square(src='/images/el_poeta_halley_lovel_of_lesbian.jpg')
+            .adjust-to-center-left
+              .center-data-disc El poeta Halley
+              .center-data-disc Lovel of Lesbian
+              .play-triangles
+              a.center-bottom-alignment(href='') Ver
+        
+    footer
+      #info
+        li
+          a(href="#") | Contacto 
+        li
+          a(href="#") &nbsp;| Sobre nosotros 
+        li
+          a(href="#") &nbsp;| Tienda 
+        li
+          a(href="#") &nbsp;| Dirección 
+        li
+          a(href="#") &nbsp;| Teléfono 
+        li
+          a(href="#") &nbsp;| Trabaja con nosotros |
+      #copyright
+        h5 Copyright 2016. Todos los derechos reservados
+
 
