@@ -7,5 +7,10 @@ html
 
     body
         block header
-        block home
+        if page == 'home'
+            block home
+        else if page == 'category'
+            block category
+        else if page == 'product'
+            block product
         block footer
