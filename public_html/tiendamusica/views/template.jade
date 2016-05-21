@@ -1,0 +1,122 @@
+extends layout
+
+block header
+    header.box
+        nav
+            #logo.submenu-nav-bar
+                a(href='') DiscoShop
+            #nav-bar-info
+                .submenu-nav-bar
+                    a(href='') Géneros
+                .submenu-nav-bar
+                    a(href='') Artistas
+                .submenu-nav-bar
+                    a(href='') Últimos discos
+
+            #search-box.submenu-nav-bar
+                form#search-box-form(method='get', action='http://www.google.com')
+                    span.icon
+                        i.fa.fa-search
+                    input#search-box-input(type='text', placeholder='Encuentra un disco...')
+
+            .submenu-nav-bar
+                a(href='') Entrar
+            #cart.submenu-nav-bar
+                a(href='') 
+                    img(src='/images/cart.png')
+
+
+
+block home
+  aside.vertical-banner.box Publicidad
+  section#releases
+    each val in [1,2,3]
+      article.release.box
+          h4 Paul McCartney volverá a tocar en España después de 12 años
+          h5
+            | Después de 12 años sin actuar en España, Paul McCartney dará un concierto en Madrid. Será el jueves 2 de junio en el estadio Vicente Calderón.
+          a.centering-text(href='') Ver más
+          .center-bottom-alignment
+              .play-triangles
+  section#content
+    #left-content
+      section#article-section.box
+        h2#bar-head.centering-text Secciones | Géneros: ROCK / POP / RAP | Más vendidos | Más comentados
+        article#notices.section.centering-text.box
+          h3 Noticias  musicales
+          ul
+            each val in [1,2,3,4,5,6]
+              li
+                a.references(href='') Un recuerdo para Bowie
+
+        article#anticipated.section.centering-text.box
+          h3 Discos más esperados
+          ul
+            each val in [1,2,3,4,5,6]
+              li
+                a.references(href='') Un recuerdo para Bowie
+        article#featured.section.centering-text.box
+          h3 Disco destacado de la semana
+          #featured-disc.box.discs.lasts-discs-form
+            img.square(src='/images/euphoria_filipe_paiva.jpg')
+            .adjust-to-center-left
+              .center-data-disc Euphoria
+              .center-data-disc Filipe Paiva
+              .play-triangles
+              a.center-bottom-alignment(href='') Ver
+        article#sold.section.centering-text.box
+          h3 Más vendidos
+          ul
+            each val in [1,2,3,4,5,6]
+              li
+                a.references(href='') Un recuerdo para Bowie
+      section#lasts-discs.box
+        h2.bar-head.centering-text Últimos discos por género
+        div
+          each value in [1,2,3,4,5]
+            .genre.centering-text.box
+              | ROCK
+
+        div
+          each val in [1,2,3]
+            .box.discs.lasts-discs-form
+              img.square(src='/images/euphoria_filipe_paiva.jpg')
+              .adjust-to-center-left
+                .center-data-disc Euphoria
+                .center-data-disc Filipe Paiva
+                .play-triangles
+                a.center-bottom-alignment(href='') Ver
+          
+    #right-content
+      button#cat-alone.centering-text.box(style='font-size: 30px')
+        | ROCK
+      each value in [1,2,3,4,5]
+        .box.discs(style='margin-left: 3%')
+          img.square(src='/images/el_poeta_halley_lovel_of_lesbian.jpg')
+          .adjust-to-center-left
+            .center-data-disc El poeta Halley
+            .center-data-disc Lovel of Lesbian
+            .play-triangles
+            a.center-bottom-alignment(href='') Ver
+
+
+
+block footer
+    footer
+      #info
+        li
+          a(href="#") | Contacto 
+        li
+          a(href="#") &nbsp;| Sobre nosotros 
+        li
+          a(href="#") &nbsp;| Tienda 
+        li
+          a(href="#") &nbsp;| Dirección 
+        li
+          a(href="#") &nbsp;| Teléfono 
+        li
+          a(href="#") &nbsp;| Trabaja con nosotros |
+      #copyright
+        h5 Copyright 2016. Todos los derechos reservados
+
+

@@ -18,7 +18,6 @@ var connection = mysql.createConnection({
 });
 connection.connect(function(error){
    if(error){
-      //throw error;
       console.log('Conexion incorrecta.');
    }else{
       console.log('Conexion correcta.');
