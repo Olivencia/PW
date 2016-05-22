@@ -104,11 +104,11 @@ block category
   section#category
     aside.vertical-banner.box Publicidad
     section#content
+      section#article-section.box(style='margin-left: 3%')
+        img(src='http://lorempixel.com/150/130/')
+        .adjust-to-center-left
+          .center-data-disc Sección ROCK
       #left-content
-        section#article-section.box(style='margin-left: 3%')
-          img(src='http://lorempixel.com/150/130/')
-          .adjust-to-center-left
-            .center-data-disc Sección ROCK
         section#category-content
           article#featured-category-disc.box.discs(style='margin-left: 3%')
               img.square(src='http://lorempixel.com/600/600/')
@@ -139,30 +139,45 @@ block category
               a.center-bottom-alignment(href='') Ver
 
 block product
-  section#category
+  section#product
     aside.vertical-banner.box Publicidad
     section#content
+      section#article-section.box(style='margin-left: 3%')
+        img(src='http://lorempixel.com/150/130/')
+        .adjust-to-center-left
+          .center-data-disc Sección ROCK
       #left-content
-        section#article-section.box(style='margin-left: 3%')
-          img(src='http://lorempixel.com/150/130/')
-          .adjust-to-center-left
-            .center-data-disc Sección ROCK
-        section#category-content
-          article#featured-category-disc.box.discs(style='margin-left: 3%')
-              img.square(src='http://lorempixel.com/600/600/')
-              .adjust-to-center-left
-                .center-data-disc El poeta Halley
-                .center-data-disc Lovel of Lesbian
-                .play-triangles
-                a.center-bottom-alignment(href='') Ver
-          each val in [1,2,3,4,5,6]
-            article.category-disc.box.discs(style='margin-left: 3%')
-              img.square(src='http://lorempixel.com/600/600/')
-              .adjust-to-center-left
-                .center-data-disc El poeta Halley
-                .center-data-disc Lovel of Lesbian
-                .play-triangles
-                a.center-bottom-alignment(href='') Ver
+        section
+          article#product-name.box(style='margin-left: 4%') Marshal Mathers LP II
+          article#product-data.box.discs(style='margin-left: 4%')
+              h2 Autor
+              #song-info
+                img.square(src='http://lorempixel.com/600/600/')
+                div(style='clear:both')
+                  #genre-info
+                    p Genero
+                    p Rock
+                div(style='clear:both')
+                  .price
+                    p Precio
+                    p 20€
+              #song-list
+                div.box
+                  .select-song
+                    input(type='radio', name='songs', checked)
+                  .sample-song Cancion 1
+                  div(style='clear:both')
+                each val in [1,2,3,4,5,6,7,8]
+                  div.box
+                    .select-song
+                      input(type='radio', name='songs')
+                    .sample-song Cancion 1
+                    div(style='clear:both')
+              .bottom-info
+                div
+                  p Puntuación
+                  p 8.5/10  
+                button(type='button') Comprar
             
       #right-content
         button#cat-alone.centering-text.box(style='font-size: 30px')

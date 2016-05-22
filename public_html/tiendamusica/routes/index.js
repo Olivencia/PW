@@ -29,7 +29,7 @@ router.get('/pop', function(req, res, next) {
 
 //GET pop category page. 
 router.get('/producto', function(req, res, next) {
-  res.render('template', { title: 'producto', prueba: 'eii', page: 'category' });
+  res.render('template', { title: 'producto', prueba: 'eii', page: 'product' });
 });
 
 module.exports = router;
