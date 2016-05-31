@@ -8,22 +8,6 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
-var mysql = require('mysql');
-
-var connection = mysql.createConnection({
-   host: 'localhost',
-   user: 'shop_admin',
-   database: 'tiendamusica',
-   port: 3306
-});
-connection.connect(function(error){
-   if(error){
-      console.log('Conexion incorrecta.');
-   }else{
-      console.log('Conexion correcta.');
-   }
-});
-
 var app = express();
 
 // view engine setup

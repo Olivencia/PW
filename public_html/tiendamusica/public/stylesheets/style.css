@@ -1,11 +1,10 @@
 html {
-  display: table;
-  margin: 0;
   background-color: #aaa;
 }
-#wrapper {
+.screen-center {
   max-width: 1336px;
   font-family: arial;
+  margin: 0 auto;
 }
 body {
   margin: 0 auto;
@@ -199,12 +198,10 @@ li {
 }
 nav {
   list-style-type: none;
-  margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #333;
-/*position: fixed;
-    z-index: 999999;*/
+  max-width: 1336px;
+  margin: 0 auto;
 }
 .submenu-nav-bar {
   float: left;
@@ -267,8 +264,10 @@ nav {
 }
 header {
   position: fixed;
+  top: 0;
   width: 100%;
   z-index: 99999;
+  background-color: #333 !important;
 }
 .dropdown-container {
   display: none;
@@ -540,20 +539,76 @@ footer #copyright h5 {
   float: right;
   margin: 3%;
 }
-#subs #service-subscription {
-  width: 96%;
+#subs #service-subscription,
+#subs #subtitle-subscription {
+  width: 100%;
   height: 180px;
-  float: left;
+  margin-bottom: 10px;
 }
-#subs #service-subscription .adjust-to-center-left {
-  width: 53%;
-  padding-right: 19.5%;
+#subs #subtitle-subscription {
+  height: 90px;
+}
+#subs #service-subscription .adjust-to-center-left,
+#subs #subtitle-subscription .adjust-to-center-left {
+  width: 100%;
+  padding: 10px;
+  margin: 0 auto;
 }
 #subs #service-subscription .adjust-to-center-left .center-data-disc {
   margin: 0;
-  padding-top: 7%;
+  padding-top: 5%;
   font-size: 44px;
 }
-#subs #service-subscription {
+#subs #subtitle-subscription .adjust-to-center-left .center-data-disc {
+  margin: 0;
+  padding-top: 0.8%;
+  font-size: 30px;
+}
+#subs #content {
   margin-top: 100px;
+}
+#subs aside.vertical-banner {
+  margin-top: 0;
+}
+#subs #subscription-content > h2 {
+  text-align: center;
+}
+#subs #subscription-content > form {
+  margin: 0 auto;
+  max-width: 40%;
+}
+#subs #subscription-content > form > div {
+  margin-bottom: 1%;
+}
+#subs #subscription-content > form > #time #time-period div {
+  display: inline-block;
+}
+#subs #subscription-content > form > #time {
+  height: 30px;
+}
+#subs #subscription-content > form > div > input {
+  width: 46%;
+  height: 30px;
+  margin-right: 1%;
+  padding: 1%;
+}
+#subs #subscription-content > form #time-label {
+  float: left;
+  margin-top: 2px;
+}
+#subs #subscription-content #submit-button,
+#subs #subscription-content > form #time-period {
+  text-align: center;
+}
+.submit-form {
+  margin-bottom: 20px;
+  width: auto !important;
+  padding-left: 2% !important;
+  padding-right: 2% !important;
+  font-weight: bold;
+}
+.submit-form:hover {
+  color: #fff;
+  background-color: #888;
+  border: 1px solid #000;
 }

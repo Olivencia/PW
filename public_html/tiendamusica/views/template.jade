@@ -28,7 +28,7 @@ block header
 
 
 block home
-  section#home
+  section#home.screen-center
     aside.vertical-banner.box Publicidad
     section#releases
       each val in [1,2,3]
@@ -101,7 +101,7 @@ block home
               a.center-bottom-alignment(href='') Ver
 
 block category
-  section#category
+  section#category.screen-center
     aside.vertical-banner.box Publicidad
     section#content
       section#article-section.box(style='margin-left: 3%')
@@ -139,7 +139,7 @@ block category
               a.center-bottom-alignment(href='') Ver
 
 block product
-  section#product
+  section#product.screen-center
     aside.vertical-banner.box Publicidad
     section#content
       section#article-section.box(style='margin-left: 3%')
@@ -192,16 +192,17 @@ block product
               a.center-bottom-alignment(href='') Ver
 
 block subs
-  section#subs
+  section#subs.screen-center
     aside.vertical-banner.box Publicidad
     section#content
-      section#service-subscription.box(style='margin-left: 3%')
+      section#service-subscription.box
         .adjust-to-center-left
-          .center-data-disc Subscripcion al servicio
-        section#subtitle-subscription.box(style='margin-left: 3%')
+          .center-data-disc Subscripción al servicio
+      section#subtitle-subscription.box
         .adjust-to-center-left
           .center-data-disc Recibe las mejores ofertas en tu correo
       section#subscription-content.box
+        h2 Formulario de Inscripción
         form
           div
             input(placeholder='Nombre')  
@@ -222,13 +223,17 @@ block subs
             input(placeholder='VISA')
           div
             input(placeholder='Observaciones')
-          div Envío
-            div Diario
-              input(type='radio', name="envio") 
-            div Semanal
-              input(type='radio', name="envio") 
-            div Mensual
-              input(type='radio', name="envio") 
+          div#time 
+            div#time-label Envío
+            div#time-period
+              div Diario
+                input(type='radio', name="envio") 
+              div Semanal
+                input(type='radio', name="envio") 
+              div Mensual
+                input(type='radio', name="envio") 
+          div#submit-button
+            input.submit-form(name="enviar" type="submit" value="Enviar")
 
 
 
