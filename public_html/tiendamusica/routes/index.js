@@ -20,6 +20,19 @@ connection.connect(function(error){
    }
 });
 
+function decodeParams(params) {
+    var p = params.split("&");
+    if(typeof p == "undefined")
+    	p = params;
+    var temp = new Array();
+    var cnt = 0;
+    for(var i=0; i<p.length; i++){
+    	temp[cnt] = p[i].split("=")[0];
+    	temp[cnt+1] = p[i].split("=")[1];
+    	cnt+=2;
+    }
+    return temp;
+}
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -55,6 +68,11 @@ router.get('/producto', function(req, res, next) {
 
 //GET subscripcion page. 
 router.get('/subscripcion', function(req, res, next) {
+	var url_params = req.url.split("?")[1];
+	if( typeof url_params !== "undefined" ){
+		var params = decodeParams(url_params);
+	}
+	
   res.render('template', { title: 'subscripcion', prueba: 'hola', page: 'subs' });
 });
 
