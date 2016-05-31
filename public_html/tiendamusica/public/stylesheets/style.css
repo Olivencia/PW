@@ -448,10 +448,12 @@ footer #copyright h5 {
   font-size: 44px;
 }
 #category #right-content,
+#subs #right-content,
 #product #right-content {
   margin-top: 27px;
 }
 #category aside.vertical-banner,
+#subs aside.vertical-banner,
 #product aside.vertical-banner,
 #product #article-section {
   margin-top: 102px;
@@ -537,4 +539,21 @@ footer #copyright h5 {
 #product #product-data .bottom-info > button {
   float: right;
   margin: 3%;
+}
+#subs #service-subscription {
+  width: 96%;
+  height: 180px;
+  float: left;
+}
+#subs #service-subscription .adjust-to-center-left {
+  width: 53%;
+  padding-right: 19.5%;
+}
+#subs #service-subscription .adjust-to-center-left .center-data-disc {
+  margin: 0;
+  padding-top: 7%;
+  font-size: 44px;
+}
+#subs #service-subscription {
+  margin-top: 100px;
 }
