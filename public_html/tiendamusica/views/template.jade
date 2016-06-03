@@ -7,11 +7,11 @@ block header
                 a(href='') DiscoShop
             #nav-bar-info
                 .submenu-nav-bar
-                    a(href='') Géneros
+                    a#nav-bar-genre(href='') Géneros
                 .submenu-nav-bar
-                    a(href='') Artistas
+                    a#nav-bar-artists(href='') Artistas
                 .submenu-nav-bar
-                    a(href='') Últimos discos
+                    a#nav-bar-lasts-discs(href='') Últimos discos
 
             #search-box.submenu-nav-bar
                 form#search-box-form(method='get', action='http://www.google.com')
@@ -211,7 +211,7 @@ block subs
             input(name="username", placeholder='Nombre de usuario')
             input(name="password", type='password', placeholder='contraseña')
           div#address
-            input(name="adress", placeholder='Direccion')
+            input(name="address", placeholder='Direccion')
           div
             input(name="city", placeholder='Ciudad')
             input(name="postal_code", placeholder='Codigo postal')
@@ -235,7 +235,26 @@ block subs
           div#submit-button
             input.submit-form(name="enviar" type="submit" value="Enviar")
 
-
+block admin
+  section#admin.screen-center
+    section#content
+      section#admin-panel.box
+        .adjust-to-center-left
+          .center-data-disc Panel de administración
+      section#content-panel.box
+        h2 Alta de nuevos discos
+        form
+          div
+            input(name="title", placeholder='Título')  
+            input(name="author", placeholder='Autor')
+            input(name="image_url", placeholder='Imagen URL')
+            input(name="genre", placeholder='Genero')
+            input(name="price", placeholder='Precio')
+            input(name="song_url", placeholder='Canción URL')
+          div#submit-button
+            input.submit-form(type="submit", value="Enviar")
+          div#success
+            p Disco dado de alta con éxito
 
 
 block footer
