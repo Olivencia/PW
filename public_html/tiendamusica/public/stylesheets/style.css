@@ -540,6 +540,7 @@ footer #copyright h5 {
   margin: 3%;
 }
 #subs #service-subscription,
+#admin #admin-panel,
 #subs #subtitle-subscription {
   width: 100%;
   height: 180px;
@@ -549,12 +550,14 @@ footer #copyright h5 {
   height: 90px;
 }
 #subs #service-subscription .adjust-to-center-left,
+#admin #admin-panel .adjust-to-center-left,
 #subs #subtitle-subscription .adjust-to-center-left {
   width: 100%;
   padding: 10px;
   margin: 0 auto;
 }
-#subs #service-subscription .adjust-to-center-left .center-data-disc {
+#subs #service-subscription .adjust-to-center-left .center-data-disc,
+#admin #admin-panel .adjust-to-center-left .center-data-disc {
   margin: 0;
   padding-top: 5%;
   font-size: 44px;
@@ -564,7 +567,8 @@ footer #copyright h5 {
   padding-top: 0.8%;
   font-size: 30px;
 }
-#subs #content {
+#subs #content,
+#admin #content {
   margin-top: 100px;
 }
 #subs aside.vertical-banner {
@@ -615,4 +619,24 @@ footer #copyright h5 {
   color: #fff;
   background-color: #888;
   border: 1px solid #000;
+}
+#admin #content {
+  width: 100%;
+}
+#admin #content {
+  text-align: center;
+}
+#admin #content-panel form > div > input {
+  display: inline-block;
+  margin-left: 1%;
+}
+#admin #content-panel form > div {
+  display: inline;
+}
+#admin #content-panel form > #success > p {
+  color: #008000;
+}
+#admin #content-panel form > #success {
+  display: none;
+  padding: 10px;
 }
