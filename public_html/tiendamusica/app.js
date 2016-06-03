@@ -5,11 +5,25 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongodb = require('mongodb');
+var assert = require('assert');
+var MongoClient = require('mongodb').MongoClient;
+var db = require('./db');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
+
+db.connect('mongodb://localhost:27017/tienda', function(err) {
+  if (err) {
+    console.log('Unable to connect to Mongo.');
+    process.exit(1);
+  } else {
+    app.listen(3024, function() {
+      console.log('Listening on port 3024...');
+    });
+  }
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -57,6 +71,5 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
-
 
 module.exports = app;
