@@ -6,6 +6,26 @@ var MongoClient = require('mongodb').MongoClient;
 var assert = require('assert');
 
 
+function searchValue(obj,needle){
+  /*var arr = Object.keys(obj).map(function(k) { return obj[k] });
+  console.log(arr);*/
+
+  var parsed = JSON.parse(obj);
+
+  var arr = [];
+
+  for(var x in parsed){
+    arr.push(parsed[x]);
+}
+console.log(arr);
+  for (var i = 0; i < obj.length; i++){
+    //console.log(obj[i].code);
+    if (obj[i].code == needle){
+      return obj[i].code;
+    }
+  }
+}
+
 function insertData(json_data, collect) {
   var db_url = 'mongodb://localhost:27017/tienda';
   MongoClient.connect(db_url, function(err, db) {
@@ -37,58 +57,86 @@ function decodeParams(params) {
     }
     return temp;
 }
-/* GET home page. */
+
+
+function writeData(url_params, collect){
+  if( typeof url_params !== "undefined" ){
+    var json_data = decodeParams(url_params);
+    insertData(json_data, collect);
+  }
+}
+
+/***** READ DATA **/
+
+function readData(url_params, collect, json_data){
+  if( typeof url_params !== "undefined" ){
+    getData(json_data, collect);
+  }
+}
+
+function getData(json_data, collect) {
+  var db_url = 'mongodb://localhost:27017/tienda';
+  MongoClient.connect(db_url, function(err, db) {
+    assert.equal(null, err);
+    getDocument(db, function() {
+        db.close();
+    }, collect, json_data);
+  });
+};
+
+var docu = new Array();
+var x ="no";
+
+var getDocument = function(db, callback, collect, json_data) {
+   var cursor =db.collection(collect).find(JSON.parse(JSON.stringify(json_data)));
+   //console.log(cursor[0]);
+   cursor.each(function(err, doc) {
+      assert.equal(err, null);
+      if (doc != null) {
+          //console.dir(doc);
+          x="hola";
+      } else {
+         callback();
+      }
+   });
+   console.log(x);
+};
+
+
+//* home page. */*/
 router.get('/', function(req, res, next) {
   params = req.url;
-  console.log(params);
+  //console.log(params);
   res.render('template', { title: 'DiscoShop', prueba: 'hola', page: 'home' });
 });
 
-//GET Rock category page. 
-router.get('/rock', function(req, res, next) {
-  res.render('template', { title: 'rock', prueba: 'hola', page: 'category' });
+/* Rock category page.*/ 
+router.get('/category', function(req, res, next) {
+  //console.log(decodeParams(req.url.split("?")[1]));
+  var obj = decodeParams(req.url.split("?")[1]);
+  res.render('template', { title: 'Sección ' + obj.cat, prueba: 'hola', page: 'category' });
 });
 
-//GET Rap category page. 
-router.get('/rap', function(req, res, next) {
-  res.render('template', { title: 'rap', prueba: 'hola', page: 'category' });
-});
-
-//GET Metal category page. 
-router.get('/metal', function(req, res, next) {
-  res.render('template', { title: 'metal', prueba: 'hola', page: 'category' });
-});
-
-//GET pop category page. 
-router.get('/pop', function(req, res, next) {
-  res.render('template', { title: 'pop', prueba: 'hola', page: 'category' });
-});
-
-//GET product page. 
+/* product page. */
 router.get('/producto', function(req, res, next) {
+  var doc= new Array();
+  var obj = decodeParams(req.url.split("?")[1]);
+  var json = readData(req.url.split("?")[1], 'discs', obj);
+  //console.log(x);
+  //console.dir(doc[1]);
+
   res.render('template', { title: 'producto', prueba: 'hola', page: 'product' });
 });
 
-//GET subscripcion page. 
+/* subscripcion page. */
 router.get('/subscripcion', function(req, res, next) {
-  var url_params = req.url.split("?")[1];
-  if( typeof url_params !== "undefined" ){
-    var params = decodeParams(url_params);
-    var json_data = arrayToJSON(params);
-    //insertData(json_data);
-  }
-  
+  writeData(req.url.split("?")[1], 'users');
   res.render('template', { title: 'subscripcion', prueba: 'hola', page: 'subs' });
 });
 
-//GET admin page. 
+/* admin page. */
 router.get('/admin', function(req, res, next) {
-  var url_params = req.url.split("?")[1];
-  if( typeof url_params !== "undefined" ){
-    var json_data = decodeParams(url_params);
-    insertData(json_data, 'discs');
-    //console.log(json_data);
-  }
+  writeData(req.url.split("?")[1], 'discs');
   res.render('template', { title: 'admin', prueba: 'hola', page: 'admin' });
 });
 
