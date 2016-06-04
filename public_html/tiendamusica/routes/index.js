@@ -4,46 +4,7 @@ var url = require('url');
 var jQuery = require('jquery');
 var MongoClient = require('mongodb').MongoClient;
 var assert = require('assert');
-
-
-function searchValue(obj,needle){
-  /*var arr = Object.keys(obj).map(function(k) { return obj[k] });
-  console.log(arr);*/
-
-  var parsed = JSON.parse(obj);
-
-  var arr = [];
-
-  for(var x in parsed){
-    arr.push(parsed[x]);
-}
-console.log(arr);
-  for (var i = 0; i < obj.length; i++){
-    //console.log(obj[i].code);
-    if (obj[i].code == needle){
-      return obj[i].code;
-    }
-  }
-}
-
-function insertData(json_data, collect) {
-  var db_url = 'mongodb://localhost:27017/tienda';
-  MongoClient.connect(db_url, function(err, db) {
-    assert.equal(null, err);
-    insertDocument(db, function() {
-        db.close();
-    }, collect, json_data);
-  });
-};
-
-var insertDocument = function(db, callback, collect, json_data) {
-   db.collection(collect).insertOne(JSON.parse(JSON.stringify(json_data)), function(err, result) {
-    assert.equal(err, null);
-    console.log("Data inserted in database");
-    callback();
-  });
-};
-
+var db = require('../db');
 
 function decodeParams(params) {
     var p = params.split("&");
@@ -58,52 +19,7 @@ function decodeParams(params) {
     return temp;
 }
 
-
-function writeData(url_params, collect){
-  if( typeof url_params !== "undefined" ){
-    var json_data = decodeParams(url_params);
-    insertData(json_data, collect);
-  }
-}
-
-/***** READ DATA **/
-
-function readData(url_params, collect, json_data){
-  if( typeof url_params !== "undefined" ){
-    getData(json_data, collect);
-  }
-}
-
-function getData(json_data, collect) {
-  var db_url = 'mongodb://localhost:27017/tienda';
-  MongoClient.connect(db_url, function(err, db) {
-    assert.equal(null, err);
-    getDocument(db, function() {
-        db.close();
-    }, collect, json_data);
-  });
-};
-
-var docu = new Array();
-var x ="no";
-
-var getDocument = function(db, callback, collect, json_data) {
-   var cursor =db.collection(collect).find(JSON.parse(JSON.stringify(json_data)));
-   //console.log(cursor[0]);
-   cursor.each(function(err, doc) {
-      assert.equal(err, null);
-      if (doc != null) {
-          //console.dir(doc);
-          x="hola";
-      } else {
-         callback();
-      }
-   });
-   console.log(x);
-};
-
-
-//* home page. */*/
+/* home page. */
 router.get('/', function(req, res, next) {
   params = req.url;
   //console.log(params);
@@ -113,19 +29,37 @@ router.get('/', function(req, res, next) {
 /* Rock category page.*/ 
 router.get('/category', function(req, res, next) {
   //console.log(decodeParams(req.url.split("?")[1]));
-  var obj = decodeParams(req.url.split("?")[1]);
-  res.render('template', { title: 'Sección ' + obj.cat, prueba: 'hola', page: 'category' });
+  var params = decodeParams(req.url.split("?")[1]);
+  var discs = db.get().collection('discs');
+  var cat = db.get().collection('discs');
+  cat.find({genre: params.cat}).toArray(function(err, docs) {
+      if(err)
+      console.log("Cant find at DB");
+    else{
+      docs.forEach(function(doc){
+        doc.title = doc.title.split('+').join(' ');
+        doc.author = doc.author.split('+').join(' ');
+      });
+    res.render('template', { title: 'Sección ' + params.cat.toUpperCase(), prueba: 'hola', discs: docs , page: 'category' });
+    }
+  });
+
 });
 
 /* product page. */
 router.get('/producto', function(req, res, next) {
-  var doc= new Array();
-  var obj = decodeParams(req.url.split("?")[1]);
-  var json = readData(req.url.split("?")[1], 'discs', obj);
-  //console.log(x);
-  //console.dir(doc[1]);
 
-  res.render('template', { title: 'producto', prueba: 'hola', page: 'product' });
+  var params = decodeParams(req.url.split("?")[1]);
+  var discs = db.get().collection('discs');
+  var cat = db.get().collection('discs');
+  cat.find({genre: params.cat}).toArray(function(err, docs) {
+      if(err)
+      console.log("Cant find at DB");
+    else{
+      console.log(docs[2]);
+      res.render('template', { title: 'producto', prueba: 'hola', page: 'product' });
+    }
+  });
 });
 
 /* subscripcion page. */
@@ -136,8 +70,16 @@ router.get('/subscripcion', function(req, res, next) {
 
 /* admin page. */
 router.get('/admin', function(req, res, next) {
-  writeData(req.url.split("?")[1], 'discs');
-  res.render('template', { title: 'admin', prueba: 'hola', page: 'admin' });
+  var json_data = decodeParams(req.url.split("?")[1]);
+  var collection = db.get().collection('discs');
+  collection.insertOne(JSON.parse(JSON.stringify(json_data)), function(err, result) {
+    if(err)
+      console.log("Cant insertOne to DB");
+    else{
+      console.log("Insert to database");
+      res.render('template', { title: 'admin', prueba: 'hola', page: 'admin' });
+    }
+  });
 });
 
 
