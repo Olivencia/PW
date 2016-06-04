@@ -30,9 +30,19 @@ function encodeParams(json){
 
 /* home page. */
 router.get('/', function(req, res, next) {
-  params = req.url;
-  //console.log(params);
-  res.render('template', { title: 'DiscoShop', page: 'home' });
+  
+  var discs = db.get().collection('discs');
+
+  discs.find().limit(5).toArray(function(err, more_seller_docs) {
+    if(err)
+      console.log("Cant find at DB");
+    else{
+      more_seller_docs.forEach(function(doc){
+        doc.url = 'http://localhost:3000/product' + encodeParams(doc);
+      });
+      res.render('template', { title: 'DiscoShop', more_seller_discs: more_seller_docs,  page: 'home' });
+    }
+  });
 });
 
 /* category page.*/ 
@@ -61,7 +71,7 @@ router.get('/category', function(req, res, next) {
             //doc.title = doc.title.split('+').join(' ');
             //doc.author = doc.author.split('+').join(' ');
           });
-          res.render('template', { title: 'Sección ' + params.cat.toUpperCase(), feature_disc: feature_doc, cat_discs: cat_docs, more_seller_discs: more_seller_docs,  page: 'category' });
+          res.render('template', { title: 'SECCIÓN ' + params.cat.toUpperCase(), feature_disc: feature_doc, cat_discs: cat_docs, more_seller_discs: more_seller_docs,  page: 'category' });
         }
       });
     }
