@@ -20,7 +20,7 @@ block header
                     input#search-box-input(type='text', placeholder='Encuentra un disco...')
 
             .submenu-nav-bar
-                a(href='') Entrar
+                a(href='http://localhost:3000/subscripcion') Entrar
             #cart.submenu-nav-bar
                 a(href='') 
                     img(src='/images/cart.png')
@@ -29,7 +29,7 @@ block header
 
 block home
   section#home.screen-center
-    aside.vertical-banner.box Publicidad
+    aside.vertical-banner.box
     section#releases
       each val in [1,2,3]
         article.release.box
@@ -42,7 +42,6 @@ block home
     section#content
       #left-content
         section#article-section.box
-          h2#bar-head.centering-text Secciones | Géneros: ROCK / POP / RAP | Más vendidos | Más comentados
         article#notices.section.centering-text.box
           h3 Noticias  musicales
           ul
@@ -66,7 +65,7 @@ block home
               .play-triangles
               a.center-bottom-alignment(href='') Ver
         article#sold.section.centering-text.box
-          h3 Más vendidos
+          h3 Más populares
           ul
             each val in [1,2,3,4,5,6]
               li
@@ -90,7 +89,7 @@ block home
             
       #right-content
         button#cat-alone.centering-text.box(style='font-size: 30px')
-          | ROCK
+          | Más populares
         each value in [1,2,3,4,5]
           .box.discs(style='margin-left: 3%')
             img.square(src='http://lorempixel.com/600/600/')
@@ -102,7 +101,7 @@ block home
 
 block category
   section#category.screen-center
-    aside.vertical-banner.box Publicidad
+    aside.vertical-banner.box
     section#content
       section#article-section.box(style='margin-left: 3%')
         img(src='http://lorempixel.com/150/130/')
@@ -111,36 +110,36 @@ block category
       #left-content
         section#category-content
           article#featured-category-disc.box.discs(style='margin-left: 3%')
-              img.square(src='http://lorempixel.com/600/600/')
+              img.square(src= feature_disc.image_url)
               .adjust-to-center-left
-                .center-data-disc El poeta Halley
-                .center-data-disc Lovel of Lesbian
+                .center-data-disc= feature_disc.title
+                .center-data-disc= feature_disc.author
                 .play-triangles
-                a.center-bottom-alignment(href='') Ver
-          for disc in discs
+                a.center-bottom-alignment(target='_blank', href= feature_disc.url) Ver
+          for disc in cat_discs
             article.category-disc.box.discs(style='margin-left: 3%')
               img.square(src= disc.image_url)
               .adjust-to-center-left
                 .center-data-disc= disc.title
                 .center-data-disc= disc.author
                 .play-triangles
-                a.center-bottom-alignment(href='') Ver
+                a.center-bottom-alignment(target='_blank', href= disc.url) Ver
             
       #right-content
         button#cat-alone.centering-text.box(style='font-size: 30px')
-          | Más vendidos
-        each value in [1,2,3,4,5]
+          | Más populares
+        for disc in more_seller_discs
           .box.discs(style='margin-left: 3%')
-            img.square(src='http://lorempixel.com/600/600/')
+            img.square(src= disc.image_url)
             .adjust-to-center-left
-              .center-data-disc El poeta Halley
-              .center-data-disc Lovel of Lesbian
+              .center-data-disc= disc.title
+              .center-data-disc= disc.author
               .play-triangles
-              a.center-bottom-alignment(href='') Ver
+              a.center-bottom-alignment(target='_blank', href= disc.url) Ver
 
 block product
   section#product.screen-center
-    aside.vertical-banner.box Publicidad
+    aside.vertical-banner.box
     section#content
       section#article-section.box(style='margin-left: 3%')
         img(src='http://lorempixel.com/150/130/')
@@ -181,7 +180,7 @@ block product
             
       #right-content
         button#cat-alone.centering-text.box(style='font-size: 30px')
-          | Más vendidos
+          | Más populares
         each value in [1,2,3,4,5]
           .box.discs(style='margin-left: 3%')
             img.square(src='http://lorempixel.com/600/600/')
@@ -193,7 +192,7 @@ block product
 
 block subs
   section#subs.screen-center
-    aside.vertical-banner.box Publicidad
+    aside.vertical-banner.box
     section#content
       section#service-subscription.box
         .adjust-to-center-left
