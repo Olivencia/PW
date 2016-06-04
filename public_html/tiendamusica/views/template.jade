@@ -4,7 +4,7 @@ block header
     header.box
         nav
             #logo.submenu-nav-bar
-                a(href='') DiscoShop
+                a(href='/') DiscoShop
             #nav-bar-info
                 .submenu-nav-bar
                     a#nav-bar-genre(href='') Géneros
@@ -20,7 +20,7 @@ block header
                     input#search-box-input(type='text', placeholder='Encuentra un disco...')
 
             .submenu-nav-bar
-                a(href='http://localhost:3000/subscripcion') Entrar
+                a(href='/subscripcion') Entrar
             #cart.submenu-nav-bar
                 a(href='') 
                     img(src='/images/cart.png')
@@ -104,7 +104,6 @@ block category
     aside.vertical-banner.box
     section#content
       section#article-section.box(style='margin-left: 3%')
-        img(src='http://lorempixel.com/150/130/')
         .adjust-to-center-left
           .center-data-disc= title
       #left-content
@@ -142,53 +141,45 @@ block product
     aside.vertical-banner.box
     section#content
       section#article-section.box(style='margin-left: 3%')
-        img(src='http://lorempixel.com/150/130/')
         .adjust-to-center-left
-          .center-data-disc Sección ROCK
+          .center-data-disc Sección #{disc_data.genre.toUpperCase()}
       #left-content
         section
-          article#product-name.box(style='margin-left: 4%') Marshal Mathers LP II
+          article#product-name.box(style='margin-left: 4%')= disc_data.title
           article#product-data.box.discs(style='margin-left: 4%')
-              h2 Autor
+              h2= disc_data.author
               #song-info
-                img.square(src='http://lorempixel.com/600/600/')
+                img.square(src= disc_data.image_url)
                 div(style='clear:both')
                   #genre-info
                     p Genero
-                    p Rock
+                    p #{disc_data.genre.toUpperCase()}
                 div(style='clear:both')
                   .price
                     p Precio
-                    p 20€
+                    p #{disc_data.price}€
               #song-list
-                div.box
-                  .select-song
-                    input(type='radio', name='songs', checked)
-                  .sample-song Cancion 1
-                  div(style='clear:both')
-                each val in [1,2,3,4,5,6,7,8]
-                  div.box
-                    .select-song
-                      input(type='radio', name='songs')
-                    .sample-song Cancion 1
-                    div(style='clear:both')
+                if disc_data.songs !== undefined
+                  for song in disc_data.songs
+                      div.box
+                        .select-song
+                          input(type='radio', name='songs')
+                        .sample-song= song
+                        div(style='clear:both')
               .bottom-info
-                div
-                  p Puntuación
-                  p 8.5/10  
                 button(type='button') Comprar
             
       #right-content
         button#cat-alone.centering-text.box(style='font-size: 30px')
           | Más populares
-        each value in [1,2,3,4,5]
+        for disc in more_seller_discs
           .box.discs(style='margin-left: 3%')
-            img.square(src='http://lorempixel.com/600/600/')
+            img.square(src= disc.image_url)
             .adjust-to-center-left
-              .center-data-disc El poeta Halley
-              .center-data-disc Lovel of Lesbian
+              .center-data-disc= disc.title
+              .center-data-disc= disc.author
               .play-triangles
-              a.center-bottom-alignment(href='') Ver
+              a.center-bottom-alignment(target='_blank', href= disc.url) Ver
 
 block subs
   section#subs.screen-center

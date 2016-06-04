@@ -467,6 +467,7 @@ footer #copyright h5 {
   text-align: center;
   font-size: 40px;
   line-height: 105px;
+  font-weight: bold;
 }
 #product #product-data {
   margin-top: 1%;
@@ -493,6 +494,8 @@ footer #copyright h5 {
 }
 #product #product-data #song-list > div {
   margin-top: 5%;
+  height: 35px;
+  line-height: 35px;
 }
 #product #product-data #song-list > div:first-child {
   margin-top: 0;
@@ -642,4 +645,15 @@ aside.vertical-banner {
 #admin #content-panel form > #success {
   display: none;
   padding: 10px;
+}
+#article-section .adjust-to-center-left .center-data-disc {
+  font-family: 'Orbitron', sans-serif;
+  padding: 0 !important;
+  font-size: 80px !important;
+  line-height: 200px !important;
+}
+#article-section .adjust-to-center-left {
+  width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
