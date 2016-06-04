@@ -42,34 +42,34 @@ block home
     section#content
       #left-content
         section#article-section.box
-        article#notices.section.centering-text.box
-          h3 Noticias  musicales
-          ul
-            each val in [1,2,3,4,5,6]
-              li
-                a.references(href='') Un recuerdo para Bowie
+          article#notices.section.centering-text.box
+            h3 Noticias  musicales
+            ul
+              each val in [1,2,3,4,5,6]
+                li
+                  a.references(href='') Un recuerdo para Bowie
 
-        article#anticipated.section.centering-text.box
-          h3 Discos más esperados
-          ul
-            each val in [1,2,3,4,5,6]
-              li
-                a.references(href='') Un recuerdo para Bowie
-        article#featured.section.centering-text.box
-          h3 Disco destacado de la semana
-          #featured-disc.box.discs.lasts-discs-form
-            img.square(src='/images/euphoria_filipe_paiva.jpg')
-            .adjust-to-center-left
-              .center-data-disc Euphoria
-              .center-data-disc Filipe Paiva
-              .play-triangles
-              a.center-bottom-alignment(href='') Ver
-        article#sold.section.centering-text.box
-          h3 Más populares
-          ul
-            each val in [1,2,3,4,5,6]
-              li
-                a.references(href='') Un recuerdo para Bowie
+          article#anticipated.section.centering-text.box
+            h3 Discos más esperados
+            ul
+              each val in [1,2,3,4,5,6]
+                li
+                  a.references(href='') Un recuerdo para Bowie
+          article#featured.section.centering-text.box
+            h3 Disco destacado de la semana
+            #featured-disc.box.discs.lasts-discs-form
+              img.square(src='/images/euphoria_filipe_paiva.jpg')
+              .adjust-to-center-left
+                .center-data-disc Euphoria
+                .center-data-disc Filipe Paiva
+                .play-triangles
+                a.center-bottom-alignment(href='') Ver
+          article#sold.section.centering-text.box
+            h3 Más populares
+            ul
+              each val in [1,2,3,4,5,6]
+                li
+                  a.references(href='') Un recuerdo para Bowie
         section#lasts-discs.box
           h2.bar-head.centering-text Últimos discos por género
           div
@@ -90,14 +90,14 @@ block home
       #right-content
         button#cat-alone.centering-text.box(style='font-size: 30px')
           | Más populares
-        each value in [1,2,3,4,5]
+        for disc in more_seller_discs
           .box.discs(style='margin-left: 3%')
-            img.square(src='http://lorempixel.com/600/600/')
+            img.square(src= disc.image_url)
             .adjust-to-center-left
-              .center-data-disc El poeta Halley
-              .center-data-disc Lovel of Lesbian
+              .center-data-disc= disc.title
+              .center-data-disc= disc.author
               .play-triangles
-              a.center-bottom-alignment(href='') Ver
+              a.center-bottom-alignment(target='_blank', href= disc.url) Ver
 
 block category
   section#category.screen-center
@@ -142,7 +142,7 @@ block product
     section#content
       section#article-section.box(style='margin-left: 3%')
         .adjust-to-center-left
-          .center-data-disc Sección #{disc_data.genre.toUpperCase()}
+          .center-data-disc SECCIÓN #{disc_data.genre.toUpperCase()}
       #left-content
         section
           article#product-name.box(style='margin-left: 4%')= disc_data.title
