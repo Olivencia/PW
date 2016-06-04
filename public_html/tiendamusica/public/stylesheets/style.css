@@ -646,14 +646,19 @@ aside.vertical-banner {
   display: none;
   padding: 10px;
 }
-#article-section .adjust-to-center-left .center-data-disc {
+#article-section > .adjust-to-center-left .center-data-disc {
   font-family: 'Orbitron', sans-serif;
   padding: 0 !important;
   font-size: 80px !important;
   line-height: 200px !important;
 }
-#article-section .adjust-to-center-left {
+#article-section > .adjust-to-center-left {
   width: 100% !important;
   padding: 0 !important;
   margin: 0 !important;
+}
+#home #article-section.box {
+  height: 550px;
+  padding: 20px;
+  margin-top: 40px;
 }
