@@ -51,8 +51,8 @@ h4 {
   margin-top: 362px;
 }
 #releases {
-  width: 88%;
-  height: 220px;
+  width: auto;
+  height: 430px;
   clear: left;
   padding-top: 100px;
 }
@@ -91,10 +91,19 @@ h4 {
   right: 0;
 }
 #content {
-  width: 88%;
+  width: 100%;
   height: 1000px;
   position: relative;
 }
+
+#home #content{
+  height: 760px;
+}
+
+aside{
+  display: none;
+}
+
 #left-content {
   float: left;
   width: 75%;
@@ -516,7 +525,7 @@ footer #copyright h5{
 }
 
 #product #product-name{
-  margin-top: 3%;
+  margin-top: 2.6%;
   height: 110px;
   text-align: center;
   font-size: 40px;
@@ -762,7 +771,84 @@ background-image: url("http://lorempixel.com/144/1000/");
 }
 
 #home #article-section.box {
-  height: 550px;
+  height: 642px;
   padding: 20px;
   margin-top: 40px;
+}
+
+#home .bx-wrapper{
+  -webkit-box-shadow: 0 0 0;
+      box-shadow: 0 0 0; 
+  border: 0;
+  background-color: #aaa;
+}
+
+#home .vertical-banner{
+  margin-top: 40px !important;
+}
+
+#home #releases > #top-rated,
+#home #releases > #last-added{
+  width: 89.6%;
+  margin-left: 60px;
+}
+#home #releases > #top-rated > h2,
+#home #releases > #last-added > h2{
+    padding-left: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-bottom: 0px;
+}
+#product #left-content{
+  width: 78%;
+}
+#category #left-content{
+  margin-left: 20px;
+  width: 76%;
+}
+
+#category #left-content #featured-category-disc{
+  margin-top: 2.7%;
+}
+
+#category #right-content,
+#product #right-content{
+  width: 21.5%;
+}
+
+.dropdown{
+  display: none;
+  position: fixed;
+  clear: both;
+  background-color: #333 !important;
+  margin-top: 73px;
+  width: 10%;
+  border-left: 1px solid #222;
+  border-right: 1px solid #222;
+  border-top: 1px solid #222;
+}
+
+.dropdown ul{
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown li:first-child{
+  margin-top: 10px;
+}
+
+.dropdown li:last-child{
+  margin-bottom: 0;
+}
+
+.dropdown li{
+  margin-bottom: 10px;
+  text-align: center;
+  border-bottom: 1px solid #222;
+  height: 30px;
+}
+
+.dropdown li > a{
+  text-decoration: none;
+  color: white;
 }
