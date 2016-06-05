@@ -1,0 +1,49 @@
+db.users.insert({
+   first_name: 'Cristobal',
+   last_name: 'Olivencia',
+   username: 'cristoly94',
+   pass: 'tiendamusica',
+   direction: '',
+   city: 'Granada',
+   postal_code: '18014',
+   province: 'Granada',
+   email: 'cristobalolivencia@correo.ugr.es',
+   dni: '75928518', 
+   visa: '1111111111111111',
+   privileges: 'y', 
+})
+
+db.discs.insert({"title" : "Ready to Die", "author" : "Notorius BIG", "image_url" : "/images/rtd.jpg", "genre" : "rap", "price" : "17", "sold" : "25", "rating": "7.9" })
+
+db.discs.insert({"title" : "...And Justice for All", "author" : "Metallica", "image_url" : "/images/ajfa.jpg", "genre" : "metal", "price" : "20", "sold" : "35", "rating": "8" })
+
+db.discs.insert({"title" : "OnlySee", "author" : "Sia", "image_url" : "/images/onlysee.jpg", "genre" : "pop", "price" : "16", "sold" : "15", "rating": "6" })
+
+db.discs.insert({"title" : "Death Magnetic", "author" : "Metallica", "image_url" : "/images/deathmagnetic.jpg", "genre" : "metal", "price" : "18", "sold" : "18", "rating": "7.5" })
+
+db.discs.insert({"title" : "Saxophone Colossus", "author" : "Sonny Rollins", "image_url" : "/images/saxoc.jpg", "genre" : "jazz", "price" : "15", "sold" : "8" , "rating": "7"})
+
+db.discs.insert({"title" : "Marshal Mathers LP", "author" : "Eminem", "image_url" : "/images/mmlp.jpg", "genre" : "rap", "price" : "19", "sold" : "22", "rating": "9" })
+
+db.discs.insert({"title" : "Colour the Small One", "author" : "Sia", "image_url" : "/images/cso.jpg", "genre" : "pop", "price" : "22", "sold" : "27", "rating": "6.5" })
+
+db.discs.insert({"title" : "Compton", "author" : "Dr Dre", "image_url" : "/images/compton.jpg", "genre" : "rap", "price" : "25", "sold" : "36", "rating": "8.1" })
+
+db.discs.insert({"title" : "No Life til Leather", "author" : "Metallica", "image_url" : "/images/nll.png", "genre" : "metal", "price" : "15", "sold" : "22", "rating": "7.8" })
+
+db.discs.insert({"title" : "Battle of the Sexes", "author" : "Ludacris", "image_url" : "/images/bots.jpg", "genre" : "rap", "price" : "14", "sold" : "15", "rating": "6" })
+
+db.discs.insert({"title" : "Vivir Para Contarlo", "author" : "Doble V", "image_url" : "/images/vpc.jpg", "genre" : "rap", "price" : "14", "sold" : "19", "rating": "8.2" })
+
+db.discs.insert({"title" : "Animal Ambition", "author" : "50 Cent", "image_url" : "/images/aa.jpg", "genre" : "rap", "price" : "28", "sold" : "32", "rating": "8.25" })
+
+db.discs.insert({"title" : "Blue Train", "author" : "John Coltrane", "image_url" : "/images/bluetrain.jpg", "genre" : "jazz", "price" : "17", "sold" : "20", "rating": "6.8" })
+
+db.discs.insert({"title" : "Metal Resistance", "author" : "Babymetal", "image_url" : "/images/mr.jpg", "genre" : "metal", "price" : "12", "sold" : "17", "rating": "5.9" })
+
+db.discs.insert({"title" : "Marshal Mathers LP 2", "author" : "Eminem", "image_url" : "/images/mmlp2.jpg", "genre" : "rap", "price" : "25", "sold" : "39", "rating": "9.3", "songs" : { "song1" : "Bad Guy", "song2" : "Parking Lot", "song3" : "Rhyme or Reason", "song4" : "So Much Better", "song5" : "Survival","song6" : "Legacy"  } })
+
+db.discs.insert({"title" : "Curtis", "author" : "50 Cent", "image_url" : "/images/curtis.jpg", "genre" : "rap", "price" : "22", "sold" : "43", "rating": "9.6" })
+
+db.discs.insert({"title" : "25", "author" : "Adele", "image_url" : "/images/25.jpg", "genre" : "pop", "price" : "27", "sold" : "38", "rating": "8.6" })
+
