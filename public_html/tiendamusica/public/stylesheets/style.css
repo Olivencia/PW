@@ -724,6 +724,9 @@ aside.vertical-banner {
 .dropdown li:last-child {
   margin-bottom: 0;
 }
+.fallback {
+  display: none;
+}
 .dropdown li {
   margin-bottom: 10px;
   text-align: center;
@@ -733,4 +736,7 @@ aside.vertical-banner {
 .dropdown li > a {
   text-decoration: none;
   color: #fff;
+}
+#login #drop-login.dropdown {
+  margin-top: 0;
 }

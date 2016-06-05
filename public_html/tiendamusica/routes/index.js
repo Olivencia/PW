@@ -69,7 +69,9 @@ router.get('/', function(req, res, next) {
            });
           }
           else {
-            res.render('template', { title: 'DiscoShop', more_seller_discs: more_seller_docs, categories: category_docs, last_added: last_docs, top_rated: rating_doc,user: 'Entrar', page: 'home' });
+            var login_user = 'Entrar';
+            if(req.session.nombre !== undefined) login_user = 'Hola, ' + req.session.nombre;
+            res.render('template', { title: 'DiscoShop', more_seller_discs: more_seller_docs, categories: category_docs, last_added: last_docs, top_rated: rating_doc,user: login_user, page: 'home' });
           }
         });
       });
@@ -139,7 +141,7 @@ router.get('/product', function(req, res, next) {
 });
 
 /* subscripcion page. */
-router.get('/subscripcion', function(req, res, next) {
+router.get('/subscription', function(req, res, next) {
   var login_user = 'Entrar';
   if(req.session.nombre !== undefined) login_user = 'Hola, ' + req.session.nombre;
   var discs = db.get().collection('discs');
@@ -154,10 +156,10 @@ router.get('/subscripcion', function(req, res, next) {
       var json_data = decodeParams(req.url.split("?")[1]);
       var users = db.get().collection('users');
       users.insertOne(JSON.parse(JSON.stringify(json_data)), function(err, result) {
-          res.render('template', { title: 'subscripcion', categories: category_docs, user: login_user, page: 'subs' });
+          res.render('template', { title: 'subscription', categories: category_docs, user: login_user, page: 'subs' });
       });
     }
-    else res.render('template', { title: 'subscripcion', categories: category_docs, user: login_user, page: 'subs' });
+    else res.render('template', { title: 'subscription', categories: category_docs, user: login_user, page: 'subs' });
   });
 });
 

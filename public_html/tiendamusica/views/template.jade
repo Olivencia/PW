@@ -26,7 +26,7 @@ block header
                     input#search-box-input(type='text', placeholder='Encuentra un disco...')
 
             .submenu-nav-bar
-                a(href='/subscripcion') Subscríbete
+                a(href='/subscription') Suscríbete
 
             .submenu-nav-bar#login
               a= user
@@ -135,9 +135,10 @@ block category
   section#category.screen-center
     aside.vertical-banner.box
     section#content
-      section#article-section.box(style='margin-left: 3%')
-        .adjust-to-center-left
-          .center-data-disc= title
+      a(href='/category?cat=#{title.toLowerCase()}')
+        section#article-section.box(style='margin-left: 3%')
+          .adjust-to-center-left
+            .center-data-disc SECCIÓN #{title}
       #left-content
         section#category-content
           article#featured-category-disc.box.discs(style='margin-left: 3%')
@@ -172,9 +173,10 @@ block product
   section#product.screen-center
     aside.vertical-banner.box
     section#content
-      section#article-section.box(style='margin-left: 3%')
-        .adjust-to-center-left
-          .center-data-disc SECCIÓN #{disc_data.genre.toUpperCase()}
+      a(href='/category?cat=#{disc_data.genre.toLowerCase()}')
+        section#article-section.box(style='margin-left: 3%')
+          .adjust-to-center-left
+            .center-data-disc SECCIÓN #{disc_data.genre.toUpperCase()}
       #left-content
         section
           article#product-name.box(style='margin-left: 4%')= disc_data.title
@@ -222,7 +224,7 @@ block subs
     section#content
       section#service-subscription.box
         .adjust-to-center-left
-          .center-data-disc Subscripción al servicio
+          .center-data-disc Suscripción al servicio
       section#subtitle-subscription.box
         .adjust-to-center-left
           .center-data-disc Recibe las mejores ofertas en tu correo
