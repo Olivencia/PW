@@ -32,6 +32,7 @@ function encodeParams(json){
 router.get('/', function(req, res, next) {
   
   var discs = db.get().collection('discs');
+  var users = db.get().collection('users');
 
   discs.find().sort( { sold: -1 } ).limit(5).toArray(function(err, more_seller_docs) {
     more_seller_docs.forEach(function(doc){
@@ -52,7 +53,24 @@ router.get('/', function(req, res, next) {
           rating_doc.forEach(function(doc){
             doc.url = 'http://localhost:3000/product' + encodeParams(doc);
           });
-          res.render('template', { title: 'DiscoShop', more_seller_discs: more_seller_docs, categories: category_docs, last_added: last_docs, top_rated: rating_doc, page: 'home' });
+          if(req.url.split("?")[1] !== undefined){
+            var js_params = decodeParams(req.url.split("?")[1]);
+            users.find({username: js_params.username}).toArray(function(err, login_user) {
+              //comparar contraseñas
+              if(login_user[0] !== undefined){
+              console.log(login_user[0] + " -> " + js_params.pass);
+              req.session.nombre = login_user[0].first_name;
+              req.session.username = login_user[0].username;
+              res.render('template', { title: 'DiscoShop', more_seller_discs: more_seller_docs, categories: category_docs, last_added: last_docs, top_rated: rating_doc, user: 'Hola, ' + req.session.nombre, page: 'home' });
+            }
+            else {
+              res.render('template', { title: 'DiscoShop', more_seller_discs: more_seller_docs, categories: category_docs, last_added: last_docs, top_rated: rating_doc,user: 'Entrar', page: 'home' });
+            }
+           });
+          }
+          else {
+            res.render('template', { title: 'DiscoShop', more_seller_discs: more_seller_docs, categories: category_docs, last_added: last_docs, top_rated: rating_doc,user: 'Entrar', page: 'home' });
+          }
         });
       });
     });
@@ -68,9 +86,6 @@ router.get('/category', function(req, res, next) {
       cat_docs.splice(0,1);
       cat_docs.forEach(function(doc){
         doc.url = 'http://localhost:3000/product' + encodeParams(doc);
-        //console.log(doc.url);
-        //doc.title = doc.title.split('+').join(' ');
-        //doc.author = doc.author.split('+').join(' ');
       });
       discs.distinct("genre", function(err, cat_docs) {
         var category_docs = {};
@@ -82,10 +97,10 @@ router.get('/category', function(req, res, next) {
       discs.find().sort( { sold: -1 } ).limit(5).toArray(function(err, more_seller_docs) {
       more_seller_docs.forEach(function(doc){
         doc.url = 'http://localhost:3000/product' + encodeParams(doc);
-        //doc.title = doc.title.split('+').join(' ');
-        //doc.author = doc.author.split('+').join(' ');
       });
-      res.render('template', { title: 'SECCIÓN ' + params.cat.toUpperCase(), feature_disc: feature_doc, cat_discs: cat_docs, more_seller_discs: more_seller_docs, categories: category_docs,  page: 'category' });
+      var login_user = 'Entrar';
+      if(req.session.nombre !== undefined) login_user = 'Hola, ' + req.session.nombre;
+      res.render('template', { title: 'SECCIÓN ' + params.cat.toUpperCase(), feature_disc: feature_doc, cat_discs: cat_docs, more_seller_discs: more_seller_docs, categories: category_docs, user: login_user,  page: 'category' });
       });
     });
   });
@@ -115,7 +130,9 @@ router.get('/product', function(req, res, next) {
             doc.title = doc.title.split('+').join(' ');
             doc.author = doc.author.split('+').join(' ');
           });
-          res.render('template', { disc_data: docu[0], more_seller_discs: more_seller_docs, categories: category_docs, page: 'product' });
+          var login_user = 'Entrar';
+          if(req.session.nombre !== undefined) login_user = 'Hola, ' + req.session.nombre;
+          res.render('template', { disc_data: docu[0], more_seller_discs: more_seller_docs, categories: category_docs, user: login_user, page: 'product' });
       });
     });
   });
@@ -123,6 +140,8 @@ router.get('/product', function(req, res, next) {
 
 /* subscripcion page. */
 router.get('/subscripcion', function(req, res, next) {
+  var login_user = 'Entrar';
+  if(req.session.nombre !== undefined) login_user = 'Hola, ' + req.session.nombre;
   var discs = db.get().collection('discs');
   discs.distinct("genre", function(err, cat_docs) {
       var category_docs = {};
@@ -133,34 +152,47 @@ router.get('/subscripcion', function(req, res, next) {
       });
     if(req.url.split("?")[1] !== undefined){
       var json_data = decodeParams(req.url.split("?")[1]);
-      var collection = db.get().collection('users');
-      collection.insertOne(JSON.parse(JSON.stringify(json_data)), function(err, result) {
-          res.render('template', { title: 'subscripcion', categories: category_docs, page: 'subs' });
+      var users = db.get().collection('users');
+      users.insertOne(JSON.parse(JSON.stringify(json_data)), function(err, result) {
+          res.render('template', { title: 'subscripcion', categories: category_docs, user: login_user, page: 'subs' });
       });
     }
-    else res.render('template', { title: 'subscripcion', categories: category_docs, page: 'subs' });
+    else res.render('template', { title: 'subscripcion', categories: category_docs, user: login_user, page: 'subs' });
   });
 });
 
 /* admin page. */
 router.get('/admin', function(req, res, next) {
-  var discs = db.get().collection('discs');
-  discs.distinct("genre", function(err, cat_docs) {
-    var category_docs = {};
-    var cnt = 1;
-    cat_docs.forEach(function(doc){
-     category_docs["cat"+cnt] = doc;
-     cnt++;
-    });
-    if(req.url.split("?")[1] !== undefined){
-      var json_data = decodeParams(req.url.split("?")[1]);
-      var collection = db.get().collection('discs');
-      collection.insertOne(JSON.parse(JSON.stringify(json_data)), function(err, result) {
-          res.render('template', { title: 'admin', page: 'admin' });
+  var login_user = 'Entrar';
+  if(req.session.username !== undefined){
+    var users = db.get().collection('users');
+    users.find({username: req.session.username}).toArray(function(err, admin_user) {
+      if(admin_user[0].privileges !== undefined && admin_user[0].privileges == 'y' ){
+
+      login_user = 'Hola, ' + req.session.nombre;
+      var discs = db.get().collection('discs');
+      discs.distinct("genre", function(err, cat_docs) {
+        var category_docs = {};
+        var cnt = 1;
+        cat_docs.forEach(function(doc){
+         category_docs["cat"+cnt] = doc;
+         cnt++;
+        });
+        if(req.url.split("?")[1] !== undefined){
+          var json_data = decodeParams(req.url.split("?")[1]);
+          var collection = db.get().collection('discs');
+          collection.insertOne(JSON.parse(JSON.stringify(json_data)), function(err, result) {
+              res.render('template', { title: 'admin', user: login_user, page: 'admin' });
+          });
+        }
+        else res.render('template', { title: 'admin', categories: category_docs, user: login_user, page: 'admin' });
       });
-    }
-    else res.render('template', { title: 'admin', categories: category_docs, page: 'admin' });
-  });
+      }
+      else res.send('Acceso denegado. Tu cuenta no tiene los privilegios suficientes.');
+    });
+  }
+  else res.send('Acceso denegado. Por favor entra con una cuenta con privilegios.');
+
 });
 
 

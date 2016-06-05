@@ -8,6 +8,7 @@ var mongodb = require('mongodb');
 var assert = require('assert');
 var MongoClient = require('mongodb').MongoClient;
 var db = require('./db');
+var session = require('express-session');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -35,6 +36,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({secret: 'abcd1234'}));
 app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 

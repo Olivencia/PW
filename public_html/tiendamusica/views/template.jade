@@ -6,9 +6,9 @@ block header
             #logo.submenu-nav-bar
                 a(href='/') DiscoShop
             #nav-bar-info
-                .submenu-nav-bar.drop
+                .submenu-nav-bar#all-genre
                     a#nav-bar-genre Géneros
-                  .dropdown.fallback
+                  #drop-genre.dropdown.fallback
                     ul
                       for cat in categories
                         li
@@ -26,7 +26,23 @@ block header
                     input#search-box-input(type='text', placeholder='Encuentra un disco...')
 
             .submenu-nav-bar
-                a(href='/subscripcion') Entrar
+                a(href='/subscripcion') Subscríbete
+
+            .submenu-nav-bar#login
+              a= user
+              #drop-login.dropdown.fallback
+                form
+                  ul
+                    li
+                      input(name="username", placeholder="Usuario")
+                    li
+                      input(name="pass", type="password", placeholder="Contraseña")
+                    li
+                      input(type="submit", placeholder="Enviar")
+
+
+            
+
             #cart.submenu-nav-bar
                 a(href='') 
                     img(src='/images/cart.png')
@@ -183,6 +199,9 @@ block product
                         .sample-song= song
                         div(style='clear:both')
               .bottom-info
+                div
+                  p Puntuación
+                  p #{disc_data.rating}/10 
                 button(type='button') Comprar
             
       #right-content
