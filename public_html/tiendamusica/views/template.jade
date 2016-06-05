@@ -6,8 +6,14 @@ block header
             #logo.submenu-nav-bar
                 a(href='/') DiscoShop
             #nav-bar-info
-                .submenu-nav-bar
-                    a#nav-bar-genre(href='') Géneros
+                .submenu-nav-bar.drop
+                    a#nav-bar-genre Géneros
+                  .dropdown.fallback
+                    ul
+                      for cat in categories
+                        li
+                          a(href= '/category/?cat=#{cat}' ) #{cat[0].toUpperCase() + cat.slice(1)}
+ 
                 .submenu-nav-bar
                     a#nav-bar-artists(href='') Artistas
                 .submenu-nav-bar
@@ -29,9 +35,34 @@ block header
 
 block home
   section#home.screen-center
-    aside.vertical-banner.box
     section#releases
-      each val in [1,2,3]
+        #last-added.box 
+          h2 Añadidos recientemente
+        .bxslider
+          for disc in last_added
+            li
+              .box.discs(style='margin-left: 3%')
+                img.square(src= disc.image_url)
+                .adjust-to-center-left
+                  .center-data-disc= disc.title
+                  .center-data-disc= disc.author
+                  .play-triangles
+                  a.center-bottom-alignment(target='_blank', href= disc.url) Ver
+        #top-rated.box 
+          h2 Mejor valorados
+        .bxslider
+          for disc in top_rated
+            li
+              .box.discs(style='margin-left: 3%')
+                img.square(src= disc.image_url)
+                .adjust-to-center-left
+                  .center-data-disc= disc.title
+                  .center-data-disc= disc.author
+                  .play-triangles
+                  a.center-bottom-alignment(target='_blank', href= disc.url) Ver
+
+    aside.vertical-banner.box
+      //each val in [1,2,3]
         article.release.box
             h4 Paul McCartney volverá a tocar en España después de 12 años
             h5
@@ -65,31 +96,15 @@ block home
                 .play-triangles
                 a.center-bottom-alignment(href='') Ver
           article#sold.section.centering-text.box
-            h3 Más populares
+            h3 Festivales y premios
             ul
               each val in [1,2,3,4,5,6]
                 li
                   a.references(href='') Un recuerdo para Bowie
-        section#lasts-discs.box
-          h2.bar-head.centering-text Últimos discos por género
-          div
-            each value in [1,2,3,4,5]
-              .genre.centering-text.box
-                | ROCK
-
-          div
-            each val in [1,2,3]
-              .box.discs.lasts-discs-form
-                img.square(src='/images/euphoria_filipe_paiva.jpg')
-                .adjust-to-center-left
-                  .center-data-disc Euphoria
-                  .center-data-disc Filipe Paiva
-                  .play-triangles
-                  a.center-bottom-alignment(href='') Ver
             
       #right-content
         button#cat-alone.centering-text.box(style='font-size: 30px')
-          | Más populares
+          | Más vendidos
         for disc in more_seller_discs
           .box.discs(style='margin-left: 3%')
             img.square(src= disc.image_url)
@@ -98,6 +113,7 @@ block home
               .center-data-disc= disc.author
               .play-triangles
               a.center-bottom-alignment(target='_blank', href= disc.url) Ver
+
 
 block category
   section#category.screen-center
@@ -126,7 +142,7 @@ block category
             
       #right-content
         button#cat-alone.centering-text.box(style='font-size: 30px')
-          | Más populares
+          | Más vendidos
         for disc in more_seller_discs
           .box.discs(style='margin-left: 3%')
             img.square(src= disc.image_url)
@@ -171,7 +187,7 @@ block product
             
       #right-content
         button#cat-alone.centering-text.box(style='font-size: 30px')
-          | Más populares
+          | Más vendidos
         for disc in more_seller_discs
           .box.discs(style='margin-left: 3%')
             img.square(src= disc.image_url)
@@ -261,7 +277,7 @@ block footer
         li
           a(href="#") &nbsp;| Teléfono 
         li
-          a(href="#") &nbsp;| Trabaja con nosotros |
+          a(href="/comosehizo.pdf") &nbsp;| Cómo se hizo |
       #copyright
         h5 Copyright 2016. Todos los derechos reservados
 

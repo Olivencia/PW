@@ -33,15 +33,29 @@ router.get('/', function(req, res, next) {
   
   var discs = db.get().collection('discs');
 
-  discs.find().limit(5).toArray(function(err, more_seller_docs) {
-    if(err)
-      console.log("Cant find at DB");
-    else{
-      more_seller_docs.forEach(function(doc){
-        doc.url = 'http://localhost:3000/product' + encodeParams(doc);
+  discs.find().sort( { sold: -1 } ).limit(5).toArray(function(err, more_seller_docs) {
+    more_seller_docs.forEach(function(doc){
+      doc.url = 'http://localhost:3000/product' + encodeParams(doc);
+    });
+    discs.distinct("genre", function(err, cat_docs) {
+      var category_docs = {};
+      var cnt = 1;
+      cat_docs.forEach(function(doc){
+       category_docs["cat"+cnt] = doc;
+       cnt++;
       });
-      res.render('template', { title: 'DiscoShop', more_seller_discs: more_seller_docs,  page: 'home' });
-    }
+      discs.find().toArray(function(err, last_docs) {
+        last_docs.forEach(function(doc){
+          doc.url = 'http://localhost:3000/product' + encodeParams(doc);
+        });
+        discs.find().sort({ "rating": -1 }).toArray(function(err, rating_doc) {
+          rating_doc.forEach(function(doc){
+            doc.url = 'http://localhost:3000/product' + encodeParams(doc);
+          });
+          res.render('template', { title: 'DiscoShop', more_seller_discs: more_seller_docs, categories: category_docs, last_added: last_docs, top_rated: rating_doc, page: 'home' });
+        });
+      });
+    });
   });
 });
 
@@ -50,9 +64,6 @@ router.get('/category', function(req, res, next) {
   var params = decodeParams(req.url.split("?")[1]);
   var discs = db.get().collection('discs');
   discs.find({genre: params.cat}).toArray(function(err, cat_docs) {
-      if(err)
-      console.log("Cant find at DB");
-    else{
       var feature_doc = cat_docs[0];
       cat_docs.splice(0,1);
       cat_docs.forEach(function(doc){
@@ -61,20 +72,22 @@ router.get('/category', function(req, res, next) {
         //doc.title = doc.title.split('+').join(' ');
         //doc.author = doc.author.split('+').join(' ');
       });
-
-      discs.find().limit(5).toArray(function(err, more_seller_docs) {
-        if(err)
-          console.log("Cant find at DB");
-        else{
-          more_seller_docs.forEach(function(doc){
-            doc.url = 'http://localhost:3000/product' + encodeParams(doc);
-            //doc.title = doc.title.split('+').join(' ');
-            //doc.author = doc.author.split('+').join(' ');
-          });
-          res.render('template', { title: 'SECCIÓN ' + params.cat.toUpperCase(), feature_disc: feature_doc, cat_discs: cat_docs, more_seller_discs: more_seller_docs,  page: 'category' });
-        }
+      discs.distinct("genre", function(err, cat_docs) {
+        var category_docs = {};
+        var cnt = 1;
+        cat_docs.forEach(function(doc){
+         category_docs["cat"+cnt] = doc;
+         cnt++;
+        });
+      discs.find().sort( { sold: -1 } ).limit(5).toArray(function(err, more_seller_docs) {
+      more_seller_docs.forEach(function(doc){
+        doc.url = 'http://localhost:3000/product' + encodeParams(doc);
+        //doc.title = doc.title.split('+').join(' ');
+        //doc.author = doc.author.split('+').join(' ');
       });
-    }
+      res.render('template', { title: 'SECCIÓN ' + params.cat.toUpperCase(), feature_disc: feature_doc, cat_discs: cat_docs, more_seller_discs: more_seller_docs, categories: category_docs,  page: 'category' });
+      });
+    });
   });
 
 });
@@ -89,55 +102,64 @@ router.get('/product', function(req, res, next) {
   params.author = params.author.split('%20').join(' ');
 
   discs.find({title: params.title}).toArray(function(err, docu) {
-      if(err)
-      console.log("Cant find at DB");
-    else{
-
-      discs.find().limit(5).toArray(function(err, more_seller_docs) {
-        if(err)
-          console.log("Cant find at DB");
-        else{
+    discs.distinct("genre", function(err, cat_docs) {
+      var category_docs = {};
+      var cnt = 1;
+      cat_docs.forEach(function(doc){
+       category_docs["cat"+cnt] = doc;
+       cnt++;
+      });
+      discs.find().sort( { sold: -1 } ).limit(5).toArray(function(err, more_seller_docs) {
           more_seller_docs.forEach(function(doc){
             doc.url = 'http://localhost:3000/product' + encodeParams(doc);
             doc.title = doc.title.split('+').join(' ');
             doc.author = doc.author.split('+').join(' ');
           });
-          console.log(docu[0].songs);
-          res.render('template', { disc_data: docu[0], more_seller_discs: more_seller_docs, page: 'product' });
-        }
+          res.render('template', { disc_data: docu[0], more_seller_discs: more_seller_docs, categories: category_docs, page: 'product' });
       });
-    }
+    });
   });
 });
 
 /* subscripcion page. */
 router.get('/subscripcion', function(req, res, next) {
-  if(req.url.split("?")[1] !== undefined){
-    var json_data = decodeParams(req.url.split("?")[1]);
-    var collection = db.get().collection('users');
-    collection.insertOne(JSON.parse(JSON.stringify(json_data)), function(err, result) {
-      if(err)
-        console.log("Cant insertOne to DB");
-      else{
-        console.log("Insert to database");
-        res.render('template', { title: 'subscripcion', page: 'subs' });
-      }
-    });
-  }
-  else res.render('template', { title: 'subscripcion', page: 'subs' });
+  var discs = db.get().collection('discs');
+  discs.distinct("genre", function(err, cat_docs) {
+      var category_docs = {};
+      var cnt = 1;
+      cat_docs.forEach(function(doc){
+       category_docs["cat"+cnt] = doc;
+       cnt++;
+      });
+    if(req.url.split("?")[1] !== undefined){
+      var json_data = decodeParams(req.url.split("?")[1]);
+      var collection = db.get().collection('users');
+      collection.insertOne(JSON.parse(JSON.stringify(json_data)), function(err, result) {
+          res.render('template', { title: 'subscripcion', categories: category_docs, page: 'subs' });
+      });
+    }
+    else res.render('template', { title: 'subscripcion', categories: category_docs, page: 'subs' });
+  });
 });
 
 /* admin page. */
 router.get('/admin', function(req, res, next) {
-  var json_data = decodeParams(req.url.split("?")[1]);
-  var collection = db.get().collection('discs');
-  collection.insertOne(JSON.parse(JSON.stringify(json_data)), function(err, result) {
-    if(err)
-      console.log("Cant insertOne to DB");
-    else{
-      console.log("Insert to database");
-      res.render('template', { title: 'admin', page: 'admin' });
+  var discs = db.get().collection('discs');
+  discs.distinct("genre", function(err, cat_docs) {
+    var category_docs = {};
+    var cnt = 1;
+    cat_docs.forEach(function(doc){
+     category_docs["cat"+cnt] = doc;
+     cnt++;
+    });
+    if(req.url.split("?")[1] !== undefined){
+      var json_data = decodeParams(req.url.split("?")[1]);
+      var collection = db.get().collection('discs');
+      collection.insertOne(JSON.parse(JSON.stringify(json_data)), function(err, result) {
+          res.render('template', { title: 'admin', page: 'admin' });
+      });
     }
+    else res.render('template', { title: 'admin', categories: category_docs, page: 'admin' });
   });
 });
 
