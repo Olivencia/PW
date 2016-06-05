@@ -44,11 +44,11 @@ router.get('/', function(req, res, next) {
        category_docs["cat"+cnt] = doc;
        cnt++;
       });
-      discs.find().toArray(function(err, last_docs) {
+      discs.find().limit(10).toArray(function(err, last_docs) {
         last_docs.forEach(function(doc){
           doc.url = 'http://localhost:3000/product' + encodeParams(doc);
         });
-        discs.find().sort({ "rating": -1 }).toArray(function(err, rating_doc) {
+        discs.find().sort({ "rating": -1 }).limit(10).toArray(function(err, rating_doc) {
           rating_doc.forEach(function(doc){
             doc.url = 'http://localhost:3000/product' + encodeParams(doc);
           });
