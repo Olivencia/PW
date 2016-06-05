@@ -30,10 +30,8 @@ function encodeParams(json){
 
 /* home page. */
 router.get('/', function(req, res, next) {
-  
   var discs = db.get().collection('discs');
   var users = db.get().collection('users');
-
   discs.find().sort( { sold: -1 } ).limit(5).toArray(function(err, more_seller_docs) {
     more_seller_docs.forEach(function(doc){
       doc.url = 'http://localhost:3000/product' + encodeParams(doc);
@@ -84,6 +82,7 @@ router.get('/category', function(req, res, next) {
   var params = decodeParams(req.url.split("?")[1]);
   var discs = db.get().collection('discs');
   discs.find({genre: params.cat}).toArray(function(err, cat_docs) {
+      cat_docs[0].url = 'http://localhost:3000/product' + encodeParams(cat_docs[0]);
       var feature_doc = cat_docs[0];
       cat_docs.splice(0,1);
       cat_docs.forEach(function(doc){
@@ -106,7 +105,6 @@ router.get('/category', function(req, res, next) {
       });
     });
   });
-
 });
 
 /* product page. */
@@ -182,9 +180,9 @@ router.get('/admin', function(req, res, next) {
         });
         if(req.url.split("?")[1] !== undefined){
           var json_data = decodeParams(req.url.split("?")[1]);
-          var collection = db.get().collection('discs');
-          collection.insertOne(JSON.parse(JSON.stringify(json_data)), function(err, result) {
-              res.render('template', { title: 'admin', user: login_user, page: 'admin' });
+          var discs = db.get().collection('discs');
+          discs.insertOne(JSON.parse(JSON.stringify(json_data)), function(err, result) {
+              res.render('template', { title: 'admin', user: login_user, categories: category_docs, page: 'admin' });
           });
         }
         else res.render('template', { title: 'admin', categories: category_docs, user: login_user, page: 'admin' });
@@ -194,8 +192,6 @@ router.get('/admin', function(req, res, next) {
     });
   }
   else res.send('Acceso denegado. Por favor entra con una cuenta con privilegios.');
-
 });
-
 
 module.exports = router;

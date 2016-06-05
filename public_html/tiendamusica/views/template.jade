@@ -78,14 +78,6 @@ block home
                   a.center-bottom-alignment(target='_blank', href= disc.url) Ver
 
     aside.vertical-banner.box
-      //each val in [1,2,3]
-        article.release.box
-            h4 Paul McCartney volverá a tocar en España después de 12 años
-            h5
-              | Después de 12 años sin actuar en España, Paul McCartney dará un concierto en Madrid. Será el jueves 2 de junio en el estadio Vicente Calderón.
-            a.centering-text(href='') Ver más
-            .center-bottom-alignment
-                .play-triangles
     section#content
       #left-content
         section#article-section.box
@@ -94,14 +86,14 @@ block home
             ul
               each val in [1,2,3,4,5,6]
                 li
-                  a.references(href='') Un recuerdo para Bowie
+                  a.references(href='') Noticia #{val}
 
           article#anticipated.section.centering-text.box
             h3 Discos más esperados
             ul
               each val in [1,2,3,4,5,6]
                 li
-                  a.references(href='') Un recuerdo para Bowie
+                  a.references(href='') Disco #{val}
           article#featured.section.centering-text.box
             h3 Disco destacado de la semana
             #featured-disc.box.discs.lasts-discs-form
@@ -116,7 +108,7 @@ block home
             ul
               each val in [1,2,3,4,5,6]
                 li
-                  a.references(href='') Un recuerdo para Bowie
+                  a.references(href='') Festival #{val}
             
       #right-content
         button#cat-alone.centering-text.box(style='font-size: 30px')

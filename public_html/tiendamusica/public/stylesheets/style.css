@@ -18,7 +18,6 @@ h4 {
   color: #0066c0;
 }
 .box {
-/*border: 1px solid black;*/
   box-shadow: 0 -1px 0 #e5e5e5, 0 4px 2px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.24) !important;
   background-color: #ddd;
 }
@@ -29,8 +28,6 @@ h4 {
   width: 50%;
   float: left;
   margin-bottom: 2%;
-/*background-image: url("http://www.vectorizados.com/muestras/mini-fondo-oscuro-musical.jpg");
-    background-size: contain;*/
 }
 .home-bar > h1 {
   font-family: 'Lobster';
@@ -97,8 +94,25 @@ h4 {
 #home #content {
   height: 760px;
 }
+#home #article-section.box {
+  height: 642px;
+  padding: 20px;
+  margin-top: 40px;
+}
+#home .bx-wrapper {
+  -webkit-box-shadow: 0 0 0;
+  box-shadow: 0 0 0;
+  border: 0;
+  background-color: #aaa;
+}
+#home .vertical-banner {
+  margin-top: 40px !important;
+}
 aside {
   display: none;
+}
+aside.vertical-banner {
+  background-image: url("http://lorempixel.com/144/1000/");
 }
 #left-content {
   float: left;
@@ -114,6 +128,9 @@ aside {
   margin-top: 2%;
   margin-left: 3%;
   height: 250px;
+}
+.section.centering-text.bordering-black > h2 {
+  margin-top: 0;
 }
 #featured {
   clear: left;
@@ -185,9 +202,6 @@ aside {
   height: 770px;
   margin-top: 40px;
 }
-.section.centering-text.bordering-black > h2 {
-  margin-top: 0;
-}
 ul {
   list-style-type: none;
 }
@@ -221,14 +235,11 @@ nav {
 .submenu-nav-bar a {
   display: block;
   color: #fff;
-/* text-align: center; */
-/* padding: 14px 16px; */
   text-decoration: none;
   text-align: center;
   vertical-align: center;
   line-height: 73px;
 }
-/* Change the link color to #111 (black) on hover */
 .submenu-nav-bar a:hover {
   background-color: #111;
 }
@@ -324,7 +335,6 @@ footer #copyright h5 {
   color: #fff;
   font-weight: bold;
 }
-/* product style */
 #category #featured-category-disc {
   width: 97%;
   height: 180px;
@@ -364,10 +374,6 @@ footer #copyright h5 {
   width: 68%;
   margin: 0;
 }
-#category .category-disc .adjust-to-center-left .play-triangles,
-#category .category-disc .adjust-to-center-left .center-bottom-alignment {
-  bottom: 5px;
-}
 #category #article-section {
   width: 96%;
   height: 180px;
@@ -386,11 +392,21 @@ footer #copyright h5 {
   padding-top: 7%;
   font-size: 44px;
 }
+#category #left-content {
+  margin-left: 20px;
+  width: 76%;
+}
+#category #left-content #featured-category-disc {
+  margin-top: 2.7%;
+}
+#category .category-disc .adjust-to-center-left .play-triangles,
+#category .category-disc .adjust-to-center-left .center-bottom-alignment {
+  bottom: 5px;
+}
 #category #article-section,
 #category #right-content {
   margin-top: 100px;
 }
-/* product style */
 #product #featured-category-disc {
   width: 97%;
   height: 180px;
@@ -430,10 +446,6 @@ footer #copyright h5 {
   width: 68%;
   margin: 0;
 }
-#product .category-disc .adjust-to-center-left .play-triangles,
-#product .category-disc .adjust-to-center-left .center-bottom-alignment {
-  bottom: 5px;
-}
 #product #article-section {
   width: 96%;
   height: 180px;
@@ -452,21 +464,6 @@ footer #copyright h5 {
   padding-top: 7%;
   font-size: 44px;
 }
-#category #right-content,
-#subs #right-content,
-#product #right-content {
-  margin-top: 27px;
-}
-#category aside.vertical-banner,
-#subs aside.vertical-banner,
-#product aside.vertical-banner,
-#product #article-section {
-  margin-top: 102px;
-}
-#product #product-data,
-#product #product-name {
-  width: 95%;
-}
 #product #product-name {
   margin-top: 2.6%;
   height: 110px;
@@ -482,21 +479,29 @@ footer #copyright h5 {
 #product #product-data > h2 {
   margin-left: 9%;
 }
-#product #product-data #song-info,
-#product #product-data #song-list {
-  float: left;
-  width: 47%;
-}
 #product #product-data .bottom-info {
   clear: both;
 }
-#product #product-data #song-list .select-song,
-#product #product-data #song-list .sample-song {
+#product #product-data .bottom-info > div {
   float: left;
-  width: 10%;
+}
+#product #product-data .bottom-info > div > p {
+  display: inline-block;
+  padding: 3px;
+}
+#product #product-data .bottom-info > div > p:first-child {
+  padding-left: 150px;
+}
+#product #product-data .bottom-info > button {
+  float: right;
+  margin: 3%;
+}
+#product #product-data #song-list {
+  padding-top: 2%;
 }
 #product #product-data #song-list .sample-song {
   width: 7%;
+  width: 89% !important;
 }
 #product #product-data #song-list > div {
   margin-top: 5%;
@@ -506,26 +511,55 @@ footer #copyright h5 {
 #product #product-data #song-list > div:first-child {
   margin-top: 0;
 }
-#product #product-data #song-list .sample-song {
-  width: 89%;
-}
 #product #product-data #song-info img {
   width: 240px;
   padding-left: 19%;
   text-align: center;
-}
-#product #product-data #song-info > div > div {
-  display: inline-block;
 }
 #product #product-data #song-info > div {
   width: 100%;
   text-align: center;
   height: 30px;
 }
+#product #product-data #song-info > div > div {
+  display: inline-block;
+}
 #product #product-data #song-info > div > div > p {
   text-align: center;
   float: left;
   padding: 5px;
+}
+#product #left-content {
+  width: 78%;
+}
+#product .category-disc .adjust-to-center-left .play-triangles,
+#product .category-disc .adjust-to-center-left .center-bottom-alignment {
+  bottom: 5px;
+}
+#category #right-content,
+#subs #right-content,
+#product #right-content {
+  margin-top: 27px;
+}
+#category aside.vertical-banner,
+#subs aside.vertical-banner,
+#product aside.vertical-banner,
+#product #article-section {
+  margin-top: 102px;
+}
+#product #product-data,
+#product #product-name {
+  width: 95%;
+}
+#product #product-data #song-info,
+#product #product-data #song-list {
+  float: left;
+  width: 47%;
+}
+#product #product-data #song-list .select-song,
+#product #product-data #song-list .sample-song {
+  float: left;
+  width: 10%;
 }
 #genre-info {
   font-weight: bold;
@@ -533,20 +567,6 @@ footer #copyright h5 {
 .price {
   color: #f00;
   font-weight: bold;
-}
-#product #product-data #song-list {
-  padding-top: 2%;
-}
-#product #product-data .bottom-info > div {
-  float: left;
-}
-#product #product-data .bottom-info > div > p {
-  display: inline-block;
-  padding: 3px;
-}
-#product #product-data .bottom-info > button {
-  float: right;
-  margin: 3%;
 }
 #subs #service-subscription,
 #admin #admin-panel,
@@ -558,30 +578,10 @@ footer #copyright h5 {
 #subs #subtitle-subscription {
   height: 90px;
 }
-#subs #service-subscription .adjust-to-center-left,
-#admin #admin-panel .adjust-to-center-left,
-#subs #subtitle-subscription .adjust-to-center-left {
-  width: 100%;
-  padding: 10px;
-  margin: 0 auto;
-}
-#subs #service-subscription .adjust-to-center-left .center-data-disc,
-#admin #admin-panel .adjust-to-center-left .center-data-disc {
-  margin: 0;
-  padding-top: 5%;
-  font-size: 44px;
-}
 #subs #subtitle-subscription .adjust-to-center-left .center-data-disc {
   margin: 0;
   padding-top: 0.8%;
   font-size: 30px;
-}
-#subs #content,
-#admin #content {
-  margin-top: 100px;
-}
-aside.vertical-banner {
-  background-image: url("http://lorempixel.com/144/1000/");
 }
 #subs aside.vertical-banner {
   margin-top: 0;
@@ -596,25 +596,42 @@ aside.vertical-banner {
 #subs #subscription-content > form > div {
   margin-bottom: 1%;
 }
-#subs #subscription-content > form > #time #time-period div {
-  display: inline-block;
-}
-#subs #subscription-content > form > #time {
-  height: 30px;
-}
 #subs #subscription-content > form > div > input {
   width: 46%;
   height: 30px;
   margin-right: 1%;
   padding: 1%;
 }
-#subs #subscription-content #address > input,
-#subs #subscription-content #info > input {
-  width: 95.7%;
+#subs #subscription-content > form > #time {
+  height: 30px;
+}
+#subs #subscription-content > form > #time #time-period div {
+  display: inline-block;
 }
 #subs #subscription-content > form #time-label {
   float: left;
   margin-top: 2px;
+}
+#subs #service-subscription .adjust-to-center-left,
+#admin #admin-panel .adjust-to-center-left,
+#subs #subtitle-subscription .adjust-to-center-left {
+  width: 100%;
+  padding: 10px;
+  margin: 0 auto;
+}
+#subs #service-subscription .adjust-to-center-left .center-data-disc,
+#admin #admin-panel .adjust-to-center-left .center-data-disc {
+  margin: 0;
+  padding-top: 5%;
+  font-size: 44px;
+}
+#subs #content,
+#admin #content {
+  margin-top: 100px;
+}
+#subs #subscription-content #address > input,
+#subs #subscription-content #info > input {
+  width: 95.7%;
 }
 #subs #subscription-content #submit-button,
 #subs #subscription-content > form #time-period {
@@ -634,48 +651,32 @@ aside.vertical-banner {
 }
 #admin #content {
   width: 100%;
-}
-#admin #content {
   text-align: center;
+}
+#admin #content-panel form > div {
+  display: inline;
 }
 #admin #content-panel form > div > input {
   display: inline-block;
   margin-left: 1%;
 }
-#admin #content-panel form > div {
-  display: inline;
-}
-#admin #content-panel form > #success > p {
-  color: #008000;
-}
 #admin #content-panel form > #success {
   display: none;
   padding: 10px;
 }
-#article-section > .adjust-to-center-left .center-data-disc {
-  font-family: 'Orbitron', sans-serif;
-  padding: 0 !important;
-  font-size: 80px !important;
-  line-height: 200px !important;
+#admin #content-panel form > #success > p {
+  color: #008000;
 }
 #article-section > .adjust-to-center-left {
   width: 100% !important;
   padding: 0 !important;
   margin: 0 !important;
 }
-#home #article-section.box {
-  height: 642px;
-  padding: 20px;
-  margin-top: 40px;
-}
-#home .bx-wrapper {
-  -webkit-box-shadow: 0 0 0;
-  box-shadow: 0 0 0;
-  border: 0;
-  background-color: #aaa;
-}
-#home .vertical-banner {
-  margin-top: 40px !important;
+#article-section > .adjust-to-center-left .center-data-disc {
+  font-family: 'Orbitron', sans-serif;
+  padding: 0 !important;
+  font-size: 80px !important;
+  line-height: 200px !important;
 }
 #home #releases > #top-rated,
 #home #releases > #last-added {
@@ -688,16 +689,6 @@ aside.vertical-banner {
   padding-top: 5px;
   padding-bottom: 5px;
   margin-bottom: 0px;
-}
-#product #left-content {
-  width: 78%;
-}
-#category #left-content {
-  margin-left: 20px;
-  width: 76%;
-}
-#category #left-content #featured-category-disc {
-  margin-top: 2.7%;
 }
 #category #right-content,
 #product #right-content {
@@ -718,25 +709,29 @@ aside.vertical-banner {
   padding: 0;
   margin: 0;
 }
-.dropdown li:first-child {
-  margin-top: 10px;
-}
-.dropdown li:last-child {
-  margin-bottom: 0;
-}
-.fallback {
-  display: none;
-}
 .dropdown li {
   margin-bottom: 10px;
   text-align: center;
   border-bottom: 1px solid #222;
   height: 30px;
 }
+.dropdown li:first-child {
+  margin-top: 10px;
+}
+.dropdown li:last-child {
+  margin-bottom: 0;
+}
 .dropdown li > a {
   text-decoration: none;
   color: #fff;
 }
+.fallback {
+  display: none;
+}
 #login #drop-login.dropdown {
   margin-top: 0;
+}
+#product #product-data #genre-info,
+#product #product-data .price {
+  margin-right: 40px;
 }

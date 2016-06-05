@@ -3,6 +3,7 @@ $(function(){
       $('#success').css("display","block");
   });
 
+  //Login dropbdown
   if ($("#home").length){
     $('#login').on("mouseover", function(){
         $('#drop-login').show();
@@ -23,6 +24,7 @@ $(function(){
     $('#login a').attr("href","/");
   }
 
+  //Genre dropdown
   $('#all-genre').on("mouseover", function(){
       $('#drop-genre').show();
   });
@@ -47,6 +49,7 @@ $(function(){
   });
 });
 
+//Create slider
 $(document).ready(function(){
   $('.bxslider').bxSlider({
     slideWidth: 300,
