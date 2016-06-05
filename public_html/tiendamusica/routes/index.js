@@ -87,10 +87,10 @@ router.get('/category', function(req, res, next) {
       cat_docs.forEach(function(doc){
         doc.url = 'http://localhost:3000/product' + encodeParams(doc);
       });
-      discs.distinct("genre", function(err, cat_docs) {
+      discs.distinct("genre", function(err, cat_section_docs) {
         var category_docs = {};
         var cnt = 1;
-        cat_docs.forEach(function(doc){
+        cat_section_docs.forEach(function(doc){
          category_docs["cat"+cnt] = doc;
          cnt++;
         });
@@ -100,7 +100,7 @@ router.get('/category', function(req, res, next) {
       });
       var login_user = 'Entrar';
       if(req.session.nombre !== undefined) login_user = 'Hola, ' + req.session.nombre;
-      res.render('template', { title: 'SECCIÓN ' + params.cat.toUpperCase(), feature_disc: feature_doc, cat_discs: cat_docs, more_seller_discs: more_seller_docs, categories: category_docs, user: login_user,  page: 'category' });
+      res.render('template', { title: params.cat.toUpperCase(), feature_disc: feature_doc, cat_discs: cat_docs, more_seller_discs: more_seller_docs, categories: category_docs, user: login_user,  page: 'category' });
       });
     });
   });
